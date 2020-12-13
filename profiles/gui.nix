@@ -37,7 +37,6 @@
       programs = {
         firefox = {
           enable = true;
-          #enableGnomeExtensions = true;
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             ublock-origin
             tridactyl
@@ -61,14 +60,13 @@
           };
         };
         chromium.enable = true;
-        #chromium.package = pkgs.unstable.chromiumDev;
       };
 
       home.packages = with pkgs; [
         imv
         gnome3.eog
 
-        unstable.nyxt
+        nyxt
 
         anki
         texlive.combined.scheme-full # for latex
@@ -77,7 +75,6 @@
         zathura
 
         master.discord
-        #inputs.master.legacyPackages.${pkgs.system}.discord
         element-desktop
         skypeforlinux
         zoom-us
@@ -95,7 +92,7 @@
         jetbrains.webstorm
         blender
 
-        unstable.octaveFull # stable doesn't work, haven't looked into it
+        octaveFull
 
         krita
       ];

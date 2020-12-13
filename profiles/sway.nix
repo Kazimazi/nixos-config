@@ -16,8 +16,7 @@
 
         grim # sceenshot tools
         slurp # region selector tool
-        wf-recorder # BROKEN https://github.com/colemickens/nixpkgs-wayland/issues/242
-        #inputs.nixpkgs.legacyPackages.${pkgs.system}.wf-recorder
+        wf-recorder
         wl-clipboard clipman
         xwayland
 

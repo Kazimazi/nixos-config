@@ -30,7 +30,7 @@
             nodePackages.vscode-json-languageserver-bin
             ( rWrapper.override { packages = with rPackages; [ languageserver ]; } ) gnumake gcc
             #rnix-lsp nixpkgs-fmt
-            unstable.fzf
+            fzf
             clang-tools
           ];
           extraConfig = ''
@@ -81,7 +81,7 @@
 
             nmap Y y$
           '';
-          plugins = with pkgs.unstable.vimPlugins; [
+          plugins = with pkgs.vimPlugins; [
             { plugin = base16-vim;
               config = ''
                 function! s:base16_customize() abort

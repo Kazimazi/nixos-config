@@ -4,14 +4,12 @@
 
   # TODO use stable
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nur.url = "github:nix-community/NUR";
@@ -27,11 +25,7 @@
   outputs = inputs:
   let
     system = "x86_64-linux";
-    overlay-unstable = final: prev: {
-      unstable = import inputs.nixpkgs-unstable {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
+    overlays = final: prev: {
       master = import inputs.master {
         inherit system;
         config = { allowUnfree = true; };
@@ -44,7 +38,7 @@
         inputs.home-manager.nixosModules.home-manager
         ({ pkgs, config, ... }: {
           nixpkgs.overlays = [
-            overlay-unstable
+            overlays
             inputs.nixpkgs-wayland.overlay
             inputs.nur.overlay
             inputs.emacs.overlay
