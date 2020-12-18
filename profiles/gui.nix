@@ -19,10 +19,6 @@
     hardware = {
       pulseaudio = { enable = true; };
       ckb-next.enable = true;
-      opengl = {
-        enable = true;
-        extraPackages = with pkgs; [ rocm-opencl-icd ]; # OpenCL
-      };
     };
 
     environment.systemPackages = with pkgs; [

@@ -48,5 +48,20 @@
       ];
       specialArgs = { inherit inputs; };
     };
+    nixosConfigurations.msi = inputs.nixpkgs.lib.nixosSystem {
+      inherit system;
+      modules = [
+        inputs.home-manager.nixosModules.home-manager
+        ({ pkgs, config, ... }: {
+          nixpkgs.overlays = [
+            overlays
+            inputs.nur.overlay
+            inputs.emacs.overlay
+          ];
+        })
+        ./hosts/msi/configurations.nix
+      ];
+      specialArgs = { inherit inputs; };
+    };
   };
 }

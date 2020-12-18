@@ -82,6 +82,11 @@
 
     hardware = {
       cpu.amd.updateMicrocode = true;
+
+      opengl = {
+        enable = true;
+        extraPackages = with pkgs; [ rocm-opencl-icd ]; # OpenCL
+      };
     };
 
     system.stateVersion = "20.09";
