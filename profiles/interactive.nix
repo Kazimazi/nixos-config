@@ -36,6 +36,8 @@
 
         sshfs
 
+        ntfs3g
+
         xdg_utils
 
         unrar
