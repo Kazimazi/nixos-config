@@ -7,6 +7,7 @@
     ../mixins/alacritty.nix
     ../mixins/mpv.nix
     ../mixins/fonts.nix
+    ../mixins/firefox.nix
     ../mixins/gtk.nix
     ../mixins/qt.nix
     ../mixins/vscode.nix
@@ -26,35 +27,11 @@
 
     home-manager.users.kazimazi = { pkgs, ... }: {
       home.sessionVariables = {
-        BROWSER = "chromium";
+        BROWSER = "firefox";
         TERMINAL = "alacritty";
       };
 
       programs = {
-        firefox = {
-          enable = true;
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-            ublock-origin
-            tridactyl
-          ];
-          profiles = {
-            personal = {
-              name = "Personal";
-              id = 0;
-              isDefault = true;
-              settings = {
-                #"browser.uidensity" = 1;
-                "devtools.theme" = "dark";
-                "extensions.pocket.enabled" = false;
-                "privacy.trackingprotection.cryptomining.enabled" = true; # Blocks CryptoMining
-                "privacy.trackingprotection.enabled" = false; # redundant if you are already using uBlock Origin 3rd party filters
-                "privacy.trackingprotection.fingerprinting.enabled" = true; # Blocks Fingerprinting
-                "privacy.trackingprotection.origin_telemetry.enabled" = false;
-                "gfx.webrender.enabled" = true;
-              };
-            };
-          };
-        };
         chromium.enable = true;
       };
 

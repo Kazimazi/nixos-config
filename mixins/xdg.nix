@@ -13,6 +13,30 @@
     services.gnome3.at-spi2-core.enable = true;
 
     home-manager.users.kazimazi = { pkgs, ... }: {
+      # NOTE experiment
+      xdg.mimeApps =
+      let
+        web-browser = "firefox.desktop";
+      in {
+        enable = true;
+        defaultApplications = {
+          "text/html" = web-browser;
+          "x-scheme-handler/http" = web-browser;
+          "x-scheme-handler/https" = web-browser;
+          "x-scheme-handler/about" = web-browser;
+          "x-scheme-handler/unknown" = web-browser;
+          "x-scheme-handler/mailto" = web-browser;
+        };
+        associations = {
+          added = {
+            "image/png"  = "imv.desktop";
+            "image/jpeg" = "imv.desktop";
+            "application/pdf" = "zathura.desktop";
+            "video/*" = "mpv.desktop";
+          };
+        };
+      };
+
       xdg.userDirs = {
         enable = true;
         desktop = "\$HOME/desktop";
