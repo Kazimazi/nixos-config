@@ -7,6 +7,7 @@
         ".config/tridactyl/tridactylrc".source = (pkgs.writeText "tridactyl" ''
           set editorcmd $TERMINAL -e $EDITOR
           set smoothscroll true
+          set theme dark
         '');
       };
 

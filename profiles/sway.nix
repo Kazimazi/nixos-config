@@ -17,7 +17,7 @@
         grim # sceenshot tools
         slurp # region selector tool
         wf-recorder
-        wl-clipboard clipman
+        wl-clipboard
         xwayland
 
         gnome3.gnome-tweaks
