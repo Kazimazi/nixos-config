@@ -16,7 +16,7 @@
       # NOTE experiment
       xdg.mimeApps =
       let
-        web-browser = "chromium-browser.desktop";
+        web-browser = "firefox.desktop";
       in {
         enable = true;
         defaultApplications = {
