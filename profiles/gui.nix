@@ -26,13 +26,14 @@
 
     home-manager.users.kazimazi = { pkgs, ... }: {
       home.sessionVariables = {
-        BROWSER = "chromium";
+        BROWSER = "chromium-browser";
         TERMINAL = "alacritty";
       };
 
       programs = {
         firefox = {
           enable = true;
+          package = pkgs.master.firefox;
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             ublock-origin
             tridactyl
@@ -50,7 +51,6 @@
                 "privacy.trackingprotection.enabled" = false; # redundant if you are already using uBlock Origin 3rd party filters
                 "privacy.trackingprotection.fingerprinting.enabled" = true; # Blocks Fingerprinting
                 "privacy.trackingprotection.origin_telemetry.enabled" = false;
-                "gfx.webrender.enabled" = true;
               };
             };
           };

@@ -29,6 +29,8 @@
 
       home.sessionVariables = {
         MOZ_ENABLE_WAYLAND = "1";
+        # better place for it?
+        # GTK_USE_PORTAL = 1; # messes up my gtk fonts, and cursor
 
         XDG_SESSION_TYPE = "wayland";
         XDG_CURRENT_DESKTOP = "sway";
