@@ -4,6 +4,7 @@
   config = {
     console.useXkbConfig = true;
     services = {
+      openssh.enable = true;
       xserver = {
         xkbOptions = "caps:swapescape";
         layout = "us";
