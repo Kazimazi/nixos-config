@@ -19,7 +19,7 @@
 
     hardware = {
       pulseaudio = { enable = true; };
-      ckb-next.enable = true;
+      ckb-next.enable = false;
     };
 
     environment.systemPackages = with pkgs; [

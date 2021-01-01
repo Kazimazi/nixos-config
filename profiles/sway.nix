@@ -25,6 +25,8 @@
 
         qt5.qtwayland
         gnome3.adwaita-icon-theme
+	# debug
+        libinput
       ];
 
       home.sessionVariables = {

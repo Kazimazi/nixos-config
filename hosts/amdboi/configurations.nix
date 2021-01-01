@@ -89,6 +89,13 @@
       };
     };
 
+    # for i3 
+    #services.xserver = {
+    #  displayManager = {
+    #    sessionCommands = ''xrandr --output DisplayPort-0 --mode 1920x1080 --rate 144 --auto --output HDMI-A-0 --auto --left-of DisplayPort-0'';
+    #  };
+    #};
+
     system.stateVersion = "20.09";
   };
 }

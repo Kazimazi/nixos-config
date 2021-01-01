@@ -15,7 +15,8 @@
     nur.url = "github:nix-community/NUR";
 
     nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland";
-    # only needed if you use as a package set: which I do... right?
+    # only needed if you use as a package set:
+    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-wayland.inputs.master.follows = "master";
 
     firefox.url = "github:colemickens/flake-firefox-nightly";
