@@ -1,6 +1,6 @@
 {
   description = "muh nixos-config with flakes and home-manager";
-  # thx colmickens cool conf :)
+  # thx colemickens cool conf :)
 
   # TODO use stable
   inputs = {
