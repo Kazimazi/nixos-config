@@ -38,7 +38,7 @@
             nodePackages.vscode-json-languageserver-bin
             ( rWrapper.override { packages = with rPackages; [ languageserver ]; } ) gnumake gcc
             #rnix-lsp nixpkgs-fmt
-            fzf
+            fzf ripgrep
             clang-tools
           ];
           extraConfig = ''
