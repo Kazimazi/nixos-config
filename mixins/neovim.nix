@@ -16,6 +16,14 @@
             };
             buildInputs = [ which vim zip];
           };
+          suda = vimUtils.buildVimPlugin {
+            name = "suda";
+            src = fetchgit {
+              url= "https://github.com/lambdalisue/suda.vim";
+              rev =  "45f88d4f0699c054af775b82c87b93b439da0a22";
+              sha256 = "sha256-D41msPIhHq9ndsvH3lfl+Aw1uQZUDjHjJh8nUxYS7io=";
+            };
+          };
           #indent-blankline = vimUtils.buildVimPlugin {
           #  name = "indent-blankline.nvim";
           #  src = fetchgit {
@@ -80,6 +88,9 @@
             nmap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
             nmap Y y$
+	          " Suda
+	          " TODO
+	          let g:suda_smart_edit = 1
           '';
           plugins = with pkgs.vimPlugins; [
             { plugin = base16-vim;
@@ -165,6 +176,7 @@
             #coc-r-lsp
             coc-java
             customPlugins.nvim-r
+	          customPlugins.suda
             { plugin = fzf-vim;
               config = ''
                 nmap <leader>f :Files<CR>
