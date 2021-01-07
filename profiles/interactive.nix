@@ -27,8 +27,9 @@
 
         cmus
 
-        ghc
-        haskellPackages.haskell-language-server
+        # NOTE couldn't `cabal install` some stuff without these haskell packages
+        (ghc.withPackages (hp: with hp; [ zlib haskell-language-server ]))
+        cabal-install
 
         (rstudioWrapper.override { packages = with rPackages; [ car foreign readxl moments mice nortest ]; })
 
