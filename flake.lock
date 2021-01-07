@@ -121,6 +121,22 @@
         "type": "github"
       }
     },
+    "my-nixpkgs": {
+      "locked": {
+        "lastModified": 1610035599,
+        "narHash": "sha256-RYv6Ytr0+lm4STuo780IK8R9/NridjzTtRrG9CqVCSE=",
+        "owner": "Kazimazi",
+        "repo": "nixpkgs",
+        "rev": "2b88da34e451d0b21fcba72f88d132e9e0d3d895",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Kazimazi",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1609254719,
@@ -180,9 +196,27 @@
         "firefox": "firefox",
         "home-manager": "home-manager",
         "master": "master",
+        "my-nixpkgs": "my-nixpkgs",
         "nixpkgs": "nixpkgs",
         "nixpkgs-wayland": "nixpkgs-wayland",
-        "nur": "nur"
+        "nur": "nur",
+        "stable": "stable"
+      }
+    },
+    "stable": {
+      "locked": {
+        "lastModified": 1609867866,
+        "narHash": "sha256-ITciATW51g/VqL4CTCh74Cu/wqIztkoJNZJxqj2vEMs=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4a75ca4a4e7d14e7b0b0230b3ea57b5bd7c16218",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-20.09",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "unstableSmall": {

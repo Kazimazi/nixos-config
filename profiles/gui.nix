@@ -48,7 +48,7 @@
         zathura
 
         master.discord
-        element-desktop
+        my-nixpkgs.element-desktop
         skypeforlinux
         zoom-us
 

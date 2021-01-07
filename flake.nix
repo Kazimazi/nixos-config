@@ -5,7 +5,10 @@
   # TODO use stable
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    my-nixpkgs.url = "github:Kazimazi/nixpkgs/master";
+    #my-nixpkgs.url = "/home/kazimazi/dev/nix/nixpkgs";
     master.url = "github:nixos/nixpkgs/master";
+    stable.url = "github:nixos/nixpkgs/nixos-20.09";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -31,6 +34,14 @@
     system = "x86_64-linux";
     overlays = final: prev: {
       master = import inputs.master {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      stable = import inputs.stable {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      my-nixpkgs = import inputs.my-nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
       };
