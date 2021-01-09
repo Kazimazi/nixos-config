@@ -27,6 +27,8 @@
     firefox.inputs.nixpkgs.follows = "nixpkgs";
 
     emacs.url = "github:nix-community/emacs-overlay";
+
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = inputs:
@@ -57,6 +59,7 @@
             inputs.nixpkgs-wayland.overlay
             inputs.nur.overlay
             inputs.emacs.overlay
+            inputs.neovim-nightly-overlay.overlay
           ];
         })
         ./hosts/amdboi/configurations.nix

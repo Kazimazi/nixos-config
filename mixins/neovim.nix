@@ -7,15 +7,6 @@
         neovim =
         with pkgs;
         let customPlugins = {
-          nvim-r = vimUtils.buildVimPlugin {
-            name = "nvim-r";
-            src = fetchgit {
-              url= "https://github.com/jalvesaq/nvim-r";
-              rev =  "cc01f3fceff7d3242253819ac372f0cd4fe9152e";
-              sha256 = "sha256-RMmxK83osRtyd+qRMr8p4jwdahIQG4EdZorN3oxhtUQ=";
-            };
-            buildInputs = [ which vim zip];
-          };
           suda = vimUtils.buildVimPlugin {
             name = "suda";
             src = fetchgit {
@@ -34,6 +25,7 @@
           #};
         }; in {
           enable = true;
+          package = neovim-nightly;
           extraPackages = with pkgs; [
             nodePackages.vscode-json-languageserver-bin
             ( rWrapper.override { packages = with rPackages; [ languageserver ]; } ) gnumake gcc
@@ -88,8 +80,8 @@
             nmap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
             nmap Y y$
+
 	          " Suda
-	          " TODO
 	          let g:suda_smart_edit = 1
           '';
           plugins = with pkgs.vimPlugins; [
@@ -112,10 +104,25 @@
             }
             vim-nix
             vim-polyglot
+
+            #nvim-treesitter
+            #nvim-lspconfig
+            #{ plugin = completion-nvim;
+            #  config = ''
+            #    " Set completeopt to have a better completion experience
+            #    set completeopt=menuone,noinsert,noselect
+
+            #    " Avoid showing message extra message when using completion
+            #    set shortmess+=c
+            #    lua require'lspconfig'.hls.setup{ on_attach=require'completion'.on_attach }
+            #  '';
+            #}
+            #completion-treesitter
+
             fugitive
             vim-airline
             vim-airline-themes
-            indentLine
+            #indentLine
             #customPlugins.indent-blankline
             { plugin = coc-nvim;
               config = ''
@@ -161,11 +168,20 @@
                 " Symbol renaming.
                 nmap <leader>rn <Plug>(coc-rename)
 
-                "" rnix-lsp
+                " haskell
                 "autocmd User CocNvimInit call coc#config('languageserver', {
-                "    \ 'nix': {
-                "    \    'command': 'rnix-lsp',
-                "    \    'filetypes': ['nix'],
+                "    \ 'haskell': {
+                "    \    'command': 'haskell-language-server-wrapper',
+                "    \    'args': ['--lsp'],
+                "    \    'rootPatterns': ['*.cabal', 'stack.yaml', 'package.yaml', 'hie.yaml'],
+                "    \    'filetypes': ['hs', 'lhs', 'haskell', 'lhaskell'],
+                "    \    'initializationOptions': {
+                "    \        'languageServerHaskell' : {
+                "    \            'hlintOn': true,
+                "    \            'maxNumberOfProblems': 10,
+                "    \            'completionSnippetsOn': true
+                "    \        },
+                "    \    },
                 "    \ }
                 "\ })
               '';
@@ -173,9 +189,6 @@
             coc-pairs
             coc-highlight
             coc-json
-            #coc-r-lsp
-            coc-java
-            customPlugins.nvim-r
 	          customPlugins.suda
             { plugin = fzf-vim;
               config = ''
@@ -192,6 +205,27 @@
           vimdiffAlias = true;
           withNodeJs = true;
         };
+      };
+      home.file = {
+        ".config/nvim/coc-settings.json".source = (pkgs.writeText "coc-settings" ''
+          {
+            "languageserver": {
+              "haskell": {
+                "command": "haskell-language-server-wrapper",
+                "args": ["--lsp"],
+                "rootPatterns": [".stack.yaml", ".hie-bios", "BUILD.bazel", "cabal.config", "package.yaml"],
+                "filetypes": ["hs", "lhs", "haskell"],
+                "initializationOptions": {
+                  "languageServerHaskell": {
+                    "hlintOn": true,
+                    "maxNumberOfProblems": 10,
+                    "completionSnippetsOn": true
+                  }
+                }
+              }
+            }
+          }
+        '');
       };
     };
   };
