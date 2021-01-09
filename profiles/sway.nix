@@ -20,13 +20,8 @@
         wl-clipboard
         xwayland
 
-        gnome3.gnome-tweaks
-        gnome3.nautilus
-
         qt5.qtwayland
         gnome3.adwaita-icon-theme
-	# debug
-        libinput
       ];
 
       home.sessionVariables = {

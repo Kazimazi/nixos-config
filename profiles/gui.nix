@@ -39,6 +39,9 @@
         imv
         gnome3.eog
 
+        gnome3.nautilus
+
+
         nyxt
 
         anki

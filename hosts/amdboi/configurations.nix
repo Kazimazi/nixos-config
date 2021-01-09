@@ -8,6 +8,7 @@
     ../../mixins/v4l2loopback.nix
 
     ../../profiles/sway.nix
+    #../../profiles/desktop-gnome.nix
     #../../profiles/i3.nix
     ../../profiles/gaming.nix
   ];
