@@ -7,7 +7,10 @@
     ../mixins/xdg.nix
   ];
   config = {
-    environment.systemPackages = with pkgs; [ ripgrep ];
+    environment.systemPackages = with pkgs; [
+      ripgrep
+      fzf # emacs tramp couldn't use fzf, how about now?
+    ];
 
     # HM: ca.desrt.dconf error:
     services.dbus.packages = with pkgs; [ gnome3.dconf ];
