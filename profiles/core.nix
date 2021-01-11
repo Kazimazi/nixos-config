@@ -6,6 +6,7 @@
     ../mixins/emacs/emacs.nix
     ../mixins/git.nix
     ../mixins/fish.nix
+    ../mixins/tmux.nix
   ];
   config = {
     home-manager.useGlobalPkgs = true;
