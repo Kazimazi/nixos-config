@@ -28,8 +28,6 @@
           package = neovim-nightly;
           extraPackages = with pkgs; [
             nodePackages.vscode-json-languageserver-bin
-            ( rWrapper.override { packages = with rPackages; [ languageserver ]; } ) gnumake gcc
-            #rnix-lsp nixpkgs-fmt
             fzf ripgrep
             clang-tools
           ];
@@ -167,23 +165,6 @@
 
                 " Symbol renaming.
                 nmap <leader>rn <Plug>(coc-rename)
-
-                " haskell
-                "autocmd User CocNvimInit call coc#config('languageserver', {
-                "    \ 'haskell': {
-                "    \    'command': 'haskell-language-server-wrapper',
-                "    \    'args': ['--lsp'],
-                "    \    'rootPatterns': ['*.cabal', 'stack.yaml', 'package.yaml', 'hie.yaml'],
-                "    \    'filetypes': ['hs', 'lhs', 'haskell', 'lhaskell'],
-                "    \    'initializationOptions': {
-                "    \        'languageServerHaskell' : {
-                "    \            'hlintOn': true,
-                "    \            'maxNumberOfProblems': 10,
-                "    \            'completionSnippetsOn': true
-                "    \        },
-                "    \    },
-                "    \ }
-                "\ })
               '';
             }
             coc-pairs
