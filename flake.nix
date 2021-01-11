@@ -75,6 +75,7 @@
             overlays
             inputs.nur.overlay
             inputs.emacs.overlay
+            inputs.neovim-nightly-overlay.overlay
           ];
         })
         ./hosts/msi/configurations.nix
