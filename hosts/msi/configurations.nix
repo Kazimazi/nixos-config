@@ -91,6 +91,8 @@ in {
     services.xserver.videoDrivers = [ "nvidia" ];
     services.xserver.libinput.enable = true;
 
+    services.fstrim.enable = true;
+
     hardware = {
       opengl = {
         enable = true;

@@ -80,6 +80,7 @@
     nix.maxJobs = lib.mkDefault 16;
 
     services.xserver.videoDrivers = [ "amdgpu" ];
+    services.fstrim.enable = true;
 
     hardware = {
       cpu.amd.updateMicrocode = true;
