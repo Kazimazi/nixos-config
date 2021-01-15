@@ -13,6 +13,7 @@ in {
         enable = true;
         #package = inputs.nixpkgs-wayland.packages."x86_64-linux".sway-unwrapped;
         systemdIntegration = true;
+        wrapperFeatures.gtk = true;
         config = rec {
           modifier = "Mod4";
           inherit terminal;
