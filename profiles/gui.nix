@@ -33,15 +33,27 @@
       };
 
       programs = {
-        chromium.enable = true;
+        chromium = {
+          enable = true;
+          package = pkgs.master.chromium;
+        };
+        zathura = {
+          enable = true;
+          # how do I enable plugins explicitly?
+          package = with pkgs; ( zathura.override { useMupdf = false; } ); # use poppler instead of mupdf
+          extraConfig = ''
+            set selection-clipboard clipboard
+          '';
+        };
       };
 
       home.packages = with pkgs; [
         imv
         gnome3.eog
+        okular
+        evince
 
         gnome3.nautilus
-
 
         nyxt
 
@@ -49,7 +61,6 @@
         texlive.combined.scheme-full # for latex
         keepassxc
         papirus-icon-theme # fills some missing icons
-        zathura
 
         master.discord
         my-nixpkgs.element-desktop
@@ -65,9 +76,6 @@
 
         lispPackages.quicklisp
         sbcl
-
-        jetbrains.webstorm
-        blender
 
         octaveFull
 
