@@ -69,6 +69,8 @@
           "wheel"
           "networkmanager"
           "video"
+
+          "audio" # for pulsepipewire?
         ];
       };
     };

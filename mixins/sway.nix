@@ -11,7 +11,6 @@ in {
     home-manager.users.kazimazi = { pkgs, ... }: {
       wayland.windowManager.sway = {
         enable = true;
-        #package = inputs.nixpkgs-wayland.packages."x86_64-linux".sway-unwrapped;
         systemdIntegration = true;
         wrapperFeatures.gtk = true;
         config = rec {
@@ -25,8 +24,7 @@ in {
           };
           window.border = 4;
           startup = [
-            #{ always = true; command = "${pkgs.xorg.xrdb}/bin/xrdb -l $HOME/.Xresources"; }
-            #{ always = true; command = "${pkgs.systemd}/bin/systemd-notify --ready || true"; }
+            { always = true; command = "${pkgs.systemd}/bin/systemd-notify --ready || true"; }
             { always = true; command = "${pkgs.mako}/bin/mako"; }
           ];
           input = {
