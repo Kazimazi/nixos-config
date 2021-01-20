@@ -11,7 +11,6 @@ in {
     home-manager.users.kazimazi = { pkgs, ... }: {
       wayland.windowManager.sway = {
         enable = true;
-        systemdIntegration = true;
         wrapperFeatures.gtk = true;
         config = rec {
           modifier = "Mod4";
