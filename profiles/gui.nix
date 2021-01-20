@@ -9,6 +9,7 @@
     ../mixins/fonts.nix
     ../mixins/firefox.nix
     ../mixins/gtk.nix
+    ../mixins/pipewire.nix
     ../mixins/qt.nix
     ../mixins/vscode.nix
   ];
@@ -18,7 +19,7 @@
     };
 
     hardware = {
-      pulseaudio = { enable = true; };
+      #pulseaudio = { enable = true; }; # set in pipewire.nix
       ckb-next.enable = false;
     };
 
