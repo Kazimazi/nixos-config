@@ -35,7 +35,7 @@
       programs = {
         chromium = {
           enable = true;
-          package = pkgs.master.chromium;
+          package = pkgs.chromium;
         };
         zathura = {
           enable = true;
