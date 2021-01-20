@@ -31,7 +31,7 @@
           added = {
             "image/png"  = "imv.desktop";
             "image/jpeg" = "imv.desktop";
-            "application/pdf" = "zathura.desktop";
+            "application/pdf" = "zathura.desktop"; # FIXME xdg-open still opens chromium wut?
             "video/*" = "mpv.desktop";
           };
         };
