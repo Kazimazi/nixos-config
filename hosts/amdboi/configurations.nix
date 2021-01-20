@@ -26,7 +26,7 @@
       kernelModules = [
         "kvm-amd"
       ];
-      blacklistedKernelModules = [ "r8169" ]; # NOTE BROKEN - https://github.com/NixOS/nixpkgs/pull/101736
+      blacklistedKernelModules = [ "r8169" ];
       extraModulePackages = [
         config.boot.kernelPackages.r8168
       ];
