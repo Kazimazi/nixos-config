@@ -13,7 +13,6 @@
     services.gnome3.at-spi2-core.enable = true;
 
     home-manager.users.kazimazi = { pkgs, ... }: {
-      # NOTE experiment
       xdg.mimeApps =
       let
         web-browser = "firefox.desktop";
