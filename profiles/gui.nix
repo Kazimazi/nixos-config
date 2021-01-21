@@ -11,7 +11,7 @@
     ../mixins/gtk.nix
     ../mixins/pipewire.nix
     ../mixins/qt.nix
-    ../mixins/vscode.nix
+    #../mixins/vscode.nix # fuck vscode >:(
   ];
   config = {
     sound = {
