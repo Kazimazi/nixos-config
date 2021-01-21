@@ -5,6 +5,7 @@
     ./core.nix
 
     ../mixins/xdg.nix
+    ../mixins/gpg.nix
     ../mixins/vifm.nix
   ];
   config = {
