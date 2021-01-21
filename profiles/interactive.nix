@@ -5,6 +5,7 @@
     ./core.nix
 
     ../mixins/xdg.nix
+    ../mixins/vifm.nix
   ];
   config = {
     environment.systemPackages = with pkgs; [
@@ -25,8 +26,6 @@
 
         neofetch
         pciutils
-
-        vifm
 
         cmus
 
