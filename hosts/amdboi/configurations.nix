@@ -2,7 +2,7 @@
 
 {
   imports = [
-    "${modulesPath}/installer/scan/not-detected.nix"
+    (modulesPath + "/installer/scan/not-detected.nix")
     ../../mixins/common.nix
     ../../mixins/obs.nix
     ../../mixins/v4l2loopback.nix
@@ -38,24 +38,23 @@
     };
 
     fileSystems."/" =
-      { device = "/dev/disk/by-uuid/d4a433e4-04e3-48f4-b860-a72d4bec7f70";
+      { device = "/dev/disk/by-uuid/53ca0d4e-5b69-4a0b-bcae-9155ae745d31";
         fsType = "ext4";
       };
 
     fileSystems."/boot" =
-      { device = "/dev/disk/by-uuid/D7AB-49AB";
+      { device = "/dev/disk/by-uuid/A387-04B7";
         fsType = "vfat";
       };
 
     swapDevices =
-      [ { device = "/dev/disk/by-uuid/6e548454-8b41-4aac-9a39-a9766d107621"; }
+      [ { device = "/dev/disk/by-uuid/42d8d88e-6aa8-4205-afe1-904ac467f6d4"; }
       ];
 
     networking = {
-      hostName = "amdboi"; # Define your hostname.
-      interfaces = {
-        enp5s0.useDHCP = true;
-      };
+      hostName = "amdboi";
+      useDHCP = false;
+      interfaces.enp5s0.useDHCP = true;
       hosts = {
         "127.0.0.1" = [ "localhost" ];
       };
@@ -92,13 +91,6 @@
         extraPackages = with pkgs; [ rocm-opencl-icd ]; # OpenCL
       };
     };
-
-    # for i3 
-    #services.xserver = {
-    #  displayManager = {
-    #    sessionCommands = ''xrandr --output DisplayPort-0 --mode 1920x1080 --rate 144 --auto --output HDMI-A-0 --auto --left-of DisplayPort-0'';
-    #  };
-    #};
 
     system.stateVersion = "20.09";
   };
