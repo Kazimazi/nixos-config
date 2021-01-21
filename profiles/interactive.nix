@@ -30,7 +30,6 @@
 
         cmus
 
-        # NOTE couldn't `cabal install` some stuff without these haskell packages
         (ghc.withPackages (hp: with hp; [ haskell-language-server ]))
         cabal-install
 
