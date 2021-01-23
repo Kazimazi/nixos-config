@@ -58,7 +58,6 @@
             overlays
             inputs.nixpkgs-wayland.overlay
             inputs.nur.overlay
-            inputs.emacs.overlay
             inputs.neovim-nightly-overlay.overlay
           ];
         })
@@ -74,7 +73,6 @@
           nixpkgs.overlays = [
             overlays
             inputs.nur.overlay
-            inputs.emacs.overlay
             inputs.neovim-nightly-overlay.overlay
           ];
         })
