@@ -25,14 +25,15 @@
           "x-scheme-handler/about" = web-browser;
           "x-scheme-handler/unknown" = web-browser;
           "x-scheme-handler/mailto" = web-browser;
+          "application/pdf" = "org.pwmt.zathura-pdf-poppler.desktop";
+          "image/png"  = "imv.desktop";
+          "image/jpg" = "imv.desktop";
+          "image/jpeg" = "imv.desktop";
+          "video/*" = "mpv.desktop";
         };
-        associations = {
-          added = {
-            "image/png"  = "imv.desktop";
-            "image/jpeg" = "imv.desktop";
-            "application/pdf" = "zathura.desktop"; # FIXME xdg-open still opens chromium wut?
-            "video/*" = "mpv.desktop";
-          };
+        associations.added = {
+        };
+        associations.removed = {
         };
       };
 

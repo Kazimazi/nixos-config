@@ -6,7 +6,7 @@
 
     ../mixins/xdg.nix
     ../mixins/gpg.nix
-    ../mixins/vifm.nix
+    ../mixins/vifm/vifm.nix
   ];
   config = {
     environment.systemPackages = with pkgs; [
