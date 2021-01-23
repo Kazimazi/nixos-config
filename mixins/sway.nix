@@ -54,7 +54,7 @@ in {
             "Shift+Print" = ''exec ${pkgs.grim}/bin/grim  -g \"$(slurp)\"'';
           };
           output = {
-            "*" = { bg = "~/.background-image fill"; }; # FIXME
+            #"*" = { bg = "~/.background-image fill"; }; # FIXME
             HDMI-A-1 = { resolution = "1920x1080@60Hz"; position = "0,0"; };
             DP-1 = { resolution = "1920x1080@144Hz"; position = "1920,0"; adaptive_sync = "off"; };
           };
