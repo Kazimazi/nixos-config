@@ -17,7 +17,10 @@
           package = pkgs.master.firefox.override { extraNativeMessagingHosts = [ pkgs.tridactyl-native ]; };
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             betterttv
+
             ublock-origin
+            i-dont-care-about-cookies
+
             tridactyl
           ];
           profiles = {
@@ -26,10 +29,19 @@
               id = 0;
               isDefault = true;
               settings = {
-                #"browser.uidensity" = 1;
-                "devtools.theme" = "dark";
+                #"browser.uidensity" = 1; # BUG v86 might fix hamburger menu
+
+                "browser.search.hiddenOneOffs" = "Google,Yahoo,Bing,Amazon.com,Twitter";
+                "browser.search.suggest.enabled" = false;
+                "browser.urlbar.placeholderName" = "DuckDuckGo";
+
                 "browser.toolbars.bookmarks.visibility" = "newtab";
+                "devtools.theme" = "dark";
                 "extensions.pocket.enabled" = false;
+
+                "privacy.donottrackheader.enabled" = true;
+                "privacy.donottrackheader.value" = 1;
+
                 "privacy.trackingprotection.cryptomining.enabled" = true; # Blocks CryptoMining
                 "privacy.trackingprotection.enabled" = false; # redundant if you are already using uBlock Origin 3rd party filters
                 "privacy.trackingprotection.fingerprinting.enabled" = true; # Blocks Fingerprinting
