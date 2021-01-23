@@ -1,7 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   config = {
+    nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
     home-manager.users.kazimazi = { pkgs, ... }: {
       programs = {
         neovim =

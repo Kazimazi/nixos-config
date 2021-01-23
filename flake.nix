@@ -58,7 +58,6 @@
             overlays
             inputs.nixpkgs-wayland.overlay
             inputs.nur.overlay
-            inputs.neovim-nightly-overlay.overlay
           ];
         })
         ./hosts/amdboi/configurations.nix
@@ -73,7 +72,6 @@
           nixpkgs.overlays = [
             overlays
             inputs.nur.overlay
-            inputs.neovim-nightly-overlay.overlay
           ];
         })
         ./hosts/msi/configurations.nix
