@@ -99,6 +99,7 @@ in {
           };
         };
         extraConfig = ''
+          seat seat0 xcursor_theme "Adwaita" 24
           for_window [shell="xwayland"] title_format "%title [XWayland]"
         '';
       };
