@@ -33,26 +33,12 @@
 
           export SDL_VIDEODRIVER="wayland";
 
-          export QT_QPA_PLATFORM="wayland-egl";
+          export QT_QPA_PLATFORM="wayland";
           export QT_WAYLAND_DISABLE_WINDOWDECORATION="1";
 
           export _JAVA_AWT_WM_NONREPARENTING="1";
         '';
       };
-
-      #home.sessionVariables = {
-      #  MOZ_ENABLE_WAYLAND = "1";
-
-      #  XDG_SESSION_TYPE = "wayland";
-      #  XDG_CURRENT_DESKTOP = "sway";
-
-      #  SDL_VIDEODRIVER = "wayland";
-
-      #  QT_QPA_PLATFORM = "wayland-egl";
-      #  QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-
-      #  _JAVA_AWT_WM_NONREPARENTING = "1";
-      #};
     };
   };
 }
