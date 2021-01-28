@@ -78,10 +78,6 @@
         evil-want-visual-char-semi-exclusive t
         ;; more vim-like behavior
         evil-symbol-word-search t
-        ;; cursor appearance
-        evil-normal-state-cursor 'box
-        evil-insert-state-cursor 'bar
-        evil-visual-state-cursor 'hollow
         ;; undo tool to use
         evil-undo-system 'undo-redo ;; undo-redo as of emacs28
         ;; for evil-collection
@@ -362,10 +358,10 @@
         hl-todo-keyword-faces
         `(("TODO"       warning bold)
           ("FIXME"      error bold)
+          ("BUG"        bold)
           ("HACK"       font-lock-constant-face bold)
           ("REVIEW"     font-lock-keyword-face bold)
           ("NOTE"       success bold)
-          ("BUG"        success bold)
           ("DEPRECATED" font-lock-doc-face bold))))
 
 ;; Highlight brackets according to their depth
@@ -519,13 +515,9 @@
 ;;
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
-;; Fixes the clipboard in tty Emacs by piping clipboard I/O through xclip, xsel,
-;; pb{copy,paste}, wl-copy, termux-clipboard-get, or getclip (cygwin).
-(add-hook 'tty-setup-hook
-  (lambda ()
-    (and (not (getenv "SSH_CONNECTION"))
-         (require 'xclip nil t)
-         (xclip-mode +1))))
+;; set up emacs clipboard int tty
+(use-package clipetty
+  :hook (after-init . global-clipetty-mode))
 
 ;;; Built-in plugins
 
