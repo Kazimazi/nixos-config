@@ -99,6 +99,7 @@ in {
           };
         };
         extraConfig = ''
+          exec ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 # like this? seems to work TODO more trial
           seat seat0 xcursor_theme "Adwaita" 24
           for_window [shell="xwayland"] title_format "%title [XWayland]"
         '';
