@@ -3,6 +3,9 @@
 {
   config = {
     console.useXkbConfig = true;
+    # try doas
+    security.doas.enable = true;
+    security.sudo.enable = false;
     services = {
       openssh.enable = true;
       xserver = {
