@@ -3,6 +3,8 @@
 {
   imports = [ ];
   config = {
+    # TODO check if it is redundant or not
+    programs.fish.enable = true;
     home-manager.users.kazimazi = { pkgs, ... }: {
       programs = {
         fish = {
