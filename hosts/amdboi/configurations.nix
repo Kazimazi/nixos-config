@@ -71,6 +71,8 @@
           "video"
 
           "audio" # for pulsepipewire?
+          # TODO separate to mixin
+          "wireshark" # for wireshark obviously
         ];
       };
     };
@@ -93,6 +95,6 @@
       };
     };
 
-    system.stateVersion = "20.09";
+    system.stateVersion = "21.05";
   };
 }
