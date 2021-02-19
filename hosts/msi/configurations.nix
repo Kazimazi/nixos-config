@@ -66,6 +66,7 @@ in {
       defaultUserShell = pkgs.fish;
       users.kazimazi = {
         isNormalUser = true;
+        initialHashedPassword = "test";
         home = "/home/kazimazi";
         extraGroups = [
           "wheel"
