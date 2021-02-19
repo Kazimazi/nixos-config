@@ -47,6 +47,10 @@
 
         (ghc.withPackages (hp: with hp; [ haskell-language-server ]))
 
+        nodePackages.vim-language-server
+        rnix-lsp
+        sumneko-lua-language-server
+
         # alkfejlesztes stack
         maven
 
