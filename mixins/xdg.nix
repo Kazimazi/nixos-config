@@ -2,11 +2,14 @@
 
 {
   config = {
-    services.pipewire.enable = true;
-
-    xdg.portal.enable = true;
-    xdg.portal.gtkUsePortal = true;
-    xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
+    xdg.portal = {
+      enable = true;
+      gtkUsePortal = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
+    };
 
     # NOTE might not need this
     # https://github.com/NixOS/nixpkgs/issues/16327
