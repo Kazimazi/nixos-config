@@ -46,7 +46,7 @@
         cmus
 
         (ghc.withPackages (hp: with hp; [ haskell-language-server ]))
-        cabal-install
+
         # alkfejlesztes stack
         maven
 
