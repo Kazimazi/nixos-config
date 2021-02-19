@@ -40,18 +40,20 @@
 (use-package no-littering
   :demand
   :config
-  ; Exclude no-littering files from recentf.
+  ;; Exclude no-littering files from recentf.
   (require 'recentf)
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory)
-  ; If auto-save file has to be stored, it goes to var directory.
+  ;; If auto-save file has to be stored, it goes to var directory.
   (setq auto-save-file-name-transforms
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-  ; Don't save customizations to init.el!
+  ;; Don't save customizations to init.el!
   (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
 
 ;;
 ;;; Optimizations
+
+(setq gc-cons-threshold 100000000)
 
 (use-package gcmh
   :hook
@@ -61,40 +63,11 @@
         gcmh-high-cons-threshold (* 16 1024 1024))
   :config (gcmh-mode 1))
 
-;;
-;;; Evil Stuff
+;; Increase the amount of data which Emacs reads from the process. Default is only 4k.
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 
-(use-package evil
-  :demand
-  :init
-  (setq evil-want-C-i-jump (or (daemonp) (display-graphic-p))
-        evil-want-C-u-scroll t
-        evil-want-C-u-delete t
-        evil-want-C-w-scroll t
-        evil-want-C-w-delete t
-        evil-want-Y-yank-to-eol t
-        evil-want-abbrev-expand-on-insert-exit nil
-        evil-respect-visual-line-mode t
-        evil-want-visual-char-semi-exclusive t
-        ;; more vim-like behavior
-        evil-symbol-word-search t
-        ;; undo tool to use
-        evil-undo-system 'undo-redo ;; undo-redo as of emacs28
-        ;; for evil-collection
-        evil-want-integration t ; This is optional since it's already set to t by default.
-        evil-want-keybinding nil)
-  :config
-  (evil-mode 1))
-
-(use-package evil-collection
-  :after evil
-  :demand
-  :init
-  (setq evil-collection-setup-minibuffer t
-        evil-collection-company-use-tng nil
-        evil-collection-want-unimpaired-p nil)
-  :config
-  (evil-collection-init))
+(setq bidi-inhibit-bpa t)
+(setq redisplay-dont-pause t)
 
 ;;;
 ;;;; Keybindings
@@ -108,10 +81,10 @@
 ;;; General
 
 (use-package general
-  :demand t
+  :demand
   :config
   (general-create-definer my-general-leader
-    :states 'normal
+    :states '(normal visual)
     :keymaps 'override
     :prefix my-leader-key)
   (general-create-definer my-general-localleader
@@ -133,9 +106,62 @@
   :config
   (which-key-mode +1))
 
+;;
+;;; Evil Stuff
+
+(use-package evil
+  :demand
+  :init
+  (setq evil-want-C-i-jump (or (daemonp) (display-graphic-p))
+        evil-want-C-u-scroll t
+        evil-want-C-w-scroll t
+        evil-want-Y-yank-to-eol t
+        evil-want-abbrev-expand-on-insert-exit nil
+        evil-respect-visual-line-mode t
+        evil-want-visual-char-semi-exclusive t
+        ;; more vim-like behavior
+        evil-symbol-word-search t
+        ;; undo tool to use
+        evil-undo-system 'undo-redo ; undo-redo as of emacs28
+        ;; for evil-collection
+        evil-want-integration t ; This is optional since it's already set to t by default.
+        evil-want-keybinding nil)
+  :config
+  (evil-mode 1))
+
 (my-general-leader
   "w" 'save-buffer
+  "t" 'tab-new
   "q" 'evil-quit)
+
+(use-package evil-collection
+  :after evil
+  :demand
+  :init
+  (setq evil-collection-setup-minibuffer t
+        evil-collection-company-use-tng nil
+        evil-collection-want-unimpaired-p nil)
+  :config
+  (evil-collection-init))
+
+(use-package evil-nerd-commenter
+  :general
+  (my-general-leader
+    "c i" 'evilnc-comment-or-uncomment-lines
+    "c p" 'evilnc-comment-or-uncomment-paragraphs
+    "c r" 'comment-or-uncomment-region
+    "c y" 'evilnc-copy-and-comment-lines)
+  :config (evilnc-default-hotkeys nil t))
+
+(use-package evil-surround
+  :hook ((prog-mode text-mode conf-mode) . evil-surround-mode)
+  :config
+  (global-evil-surround-mode 1))
+
+(use-package evil-matchit
+  :hook ((prog-mode text-mode conf-mode) . evil-matchit-mode)
+  :config
+  (global-evil-matchit-mode 1))
 
 ;;;
 ;;;; Ivy <3
@@ -156,13 +182,15 @@
 
   (ivy-mode +1))
 
+(use-package avy)
+
 (use-package counsel
   :general
   (general-define-key
    "M-x" 'counsel-M-x)
   (my-general-leader
-    "s" 'swiper
-    "f" 'counsel-fzf
+    "/" 'swiper
+    "l" 'counsel-fzf
     "g" 'counsel-git
     "r" 'counsel-rg
     "R" 'counsel-recentf)
@@ -207,9 +235,6 @@
       ring-bell-function #'ignore
       visible-bell nil)
 
-;; Enable mouse in terminal Emacs
-(add-hook 'tty-setup-hook #'xterm-mouse-mode)
-
 ;;; Scrolling
 
 (setq hscroll-margin 2
@@ -230,14 +255,6 @@
       mouse-wheel-progressive-speed nil)  ; don't accelerate scrolling
 
 ;;; Cursor
-
-;; Don't blink the cursor, it's too distracting.
-(blink-cursor-mode -1)
-
-;; Don't blink the paren matching the one at point, it's too distracting.
-(setq blink-matching-paren nil)
-
-(setq visible-cursor nil)
 
 ;; Don't stretch the cursor to fit wide characters, it is disorienting,
 ;; especially for tabs.
@@ -295,7 +312,9 @@
 (set-face-attribute 'default nil :height 105)
 
 ;; swap that font
-;(add-to-list 'default-frame-alist '(font . "SpaceMono Nerd Font-10"))
+;; (add-to-list 'default-frame-alist '(font . "SpaceMono Nerd Font-10"))
+;; (add-to-list 'default-frame-alist '(font . "VictorMono Nerd Font-11"))
+(add-to-list 'default-frame-alist '(font . "FantasqueSansMono Nerd Font-12"))
 
 ;;; Built-in packages
 
@@ -315,12 +334,12 @@
   :ensure nil
   ;; highlight matching delimiters
   :hook ((prog-mode text-mode conf-mode) . show-paren-mode)
-  :config
+  :init
   (setq show-paren-delay 0.1
         show-paren-highlight-openparen t
         show-paren-when-point-inside-paren t
         show-paren-when-point-in-periphery t)
-  (show-paren-mode +1))
+  :config (show-paren-mode +1))
 
 ;;; Line numbers
 
@@ -366,6 +385,7 @@
 
 ;; Highlight brackets according to their depth
 (use-package rainbow-delimiters
+  :disabled
   :hook ((prog-mode . rainbow-delimiters-mode)
          (sly-mrepl-mode . rainbow-delimiters-mode))
   :init
@@ -375,7 +395,13 @@
 
 (use-package doom-themes
   :init
-  (load-theme 'doom-tomorrow-night t))
+  ;; Global settings (defaults)
+  (load-theme 'doom-tomorrow-night t)
+  :config
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
@@ -385,6 +411,12 @@
     (setq-default mode-line-format nil))
   ;; Set these early so they don't trigger variable watchers
   (setq doom-modeline-bar-width 3
+        ;; How tall the mode-line should be. It's only respected in GUI.
+        ;; If the actual char height is larger, it respects the actual height.
+        doom-modeline-height 25
+        ;; Whether display icons in the mode-line.
+        ;; While using the server mode in GUI, should set the value explicitly.
+        doom-modeline-icon (display-graphic-p)
         doom-modeline-buffer-file-name-style 'relative-from-project))
 
 (use-package highlight-indent-guides
@@ -402,7 +434,7 @@
   :commands dired-jump
   :general
   (my-general-leader
-   "1" 'dired-jump)
+    "1" 'dired-jump)
   :init
   (setq dired-auto-revert-buffer t ; don't prompt to revert; just do it
         dired-dwim-target t ; suggest a target for moving/copying intelligently
@@ -443,6 +475,7 @@
   )
 
 (use-package all-the-icons-dired
+  :disabled
   :hook (dired-mode . all-the-icons-dired-mode))
 
 (use-package dired-x
@@ -515,7 +548,7 @@
 ;;
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
-;; set up emacs clipboard int tty
+;; set up emacs clipboard in tty
 (use-package clipetty
   :hook (after-init . global-clipetty-mode))
 
@@ -528,7 +561,16 @@
   :init
   (setq recentf-auto-cleanup 'never
         recentf-max-menu-items 0
-        recentf-max-saved-items 200))
+        recentf-max-saved-items 200)
+  :config (recentf-mode 1))
+
+(use-package compilation
+  :ensure nil
+  ;; turn on ansi color interpretation in compilation buffer
+  :hook (compilation-filter . (lambda ()
+                                (require 'ansi-color)
+                                (let ((inhibit-read-only t))
+                                  (ansi-color-apply-on-region (point-min) (point-max))))))
 
 ;;; Packages
 
@@ -556,7 +598,6 @@
 
 (use-package company
   :hook (after-init . global-company-mode)
-  :bind (("C-SPC" . company-search-candidates))
   :init
   (setq company-minimum-prefix-length 1
         company-tooltip-limit 16
@@ -566,19 +607,21 @@
         company-tooltip-align-annotations t
         company-require-match 'never
         company-global-modes '(not erc-mode message-mode help-mode gud-mode eshell-mode shell-mode)
-        company-backends '(company-capf)
-        ;; company-frontends '(company-pseudo-tooltip-frontend
-        ;;                     company-echo-metadata-frontend)
-        )
-  ;; (setq company-frontends '(company-tng-frontend company-box-frontend))
+        company-backends '(company-capf))
   :config (global-company-mode +1))
+
+;; FIXME bad with lsp-ui
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets)
 
 (use-package company-quickhelp
   :disabled
   :hook (company-mode . company-quickhelp-mode))
 
 (use-package company-box
-  :disabled
   :hook (company-mode . company-box-mode)
   :init (setq company-box-backends-colors nil
               company-box-show-single-candidate t
@@ -653,6 +696,8 @@
 ;;;
 ;;;; LSP
 
+(use-package projectile)
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :general
@@ -660,8 +705,20 @@
    :states 'normal
    :keymaps 'lsp-mode-map
    "K" 'lsp-describe-thing-at-point)
-  :init (setq lsp-auto-guess-root t
-              lsp-keymap-prefix "C-c l")
+  (my-general-leader
+    :keymaps 'lsp-mode-map
+    "c a" 'lsp-execute-code-action
+    "g r" 'lsp-find-references
+    "g D" 'lsp-find-declaration
+    "g i" 'lsp-find-implementation
+    "n"   'lsp-rename
+    "f"   'lsp-format-buffer
+    "c l" 'lsp-avy-lens)
+  :init
+  (setq lsp-auto-guess-root nil
+        lsp-idle-delay 0.300
+        lsp-keymap-prefix "C-c l")
+  (setq lsp-enable-snippet t)
   :hook (lsp-mode . lsp-enable-which-key-integration))
 
 (use-package lsp-ui
@@ -672,7 +729,7 @@
                 lsp-ui-doc-position 'bottom
                 lsp-lens-enable t))
 
-; VERY COOL but I need a nice home for it
+;; VERY COOL but I need a nice home for it
 (add-to-list 'display-buffer-alist
              '((lambda (buffer _) (with-current-buffer buffer
                                     (seq-some (lambda (mode)
@@ -681,6 +738,26 @@
                (display-buffer-reuse-window display-buffer-below-selected)
                (reusable-frames . visible)
                (window-height . 0.33)))
+
+(use-package dap-mode
+  :after lsp-mode
+  :config (dap-auto-configure-mode))
+
+(use-package lsp-treemacs
+  ;; :general
+  ;; (my-general-leader
+  ;;   "l s" 'lsp-treemacs-symbols
+  ;;   "l d" 'lsp-treemacs-errors-list)
+  )
+(use-package lsp-ivy
+  :general
+  (my-general-leader
+    :keymaps 'lsp-mode-map
+    "i w" 'lsp-ivy-workspace-symbol))
+
+(use-package tree-sitter)
+
+(use-package tree-sitter-langs)
 
 ;;;
 ;;;; Org
@@ -718,27 +795,34 @@
 
 ;;;
 ;;;; Flycheck
-(use-package flycheck
-  :hook (lsp-mode . flycheck-mode))
-
+(use-package flycheck :hook (lsp-mode . flycheck-mode)
+  :general
+  (general-define-key
+   :states 'normal
+   :keymaps 'lsp-mode-map
+   "]d" 'flycheck-next-error
+   "[d" 'flycheck-previous-error)
+  (my-general-leader
+    "d" 'flycheck-list-errors))
 
 ;;;
 ;;;; Nix
 
-(use-package nix-mode
-  :mode "\\.nix\\'")
+(use-package nix-mode :mode "\\.nix\\'")
 
 ;;;
 ;;;; Haskell
 
 (use-package haskell-mode
+  :hook (haskell-mode . lsp-deferred)
+  :hook (haskell-literate-mode . lsp-deferred)
   :general
   (my-general-localleader
     :keymaps 'haskell-mode-map
     "i" 'haskell-interactive-switch
     "l f" 'haskell-process-load-file)
   :init (setq haskell-process-auto-import-loaded-modules t
-              haskell-process-show-overlays nil)) ; redundant with flycheck
+              haskell-process-show-overlays nil)) ; redundant with flycheck?
 
 (use-package lsp-haskell
   :config
@@ -770,50 +854,53 @@
   (slime-setup '(slime-fancy slime-company)))
 
 ;;;
+;;;; Web
+
+(use-package web-mode
+  :hook (html-mode . web-mode)
+  :hook (web-mode . lsp-deferred))
+(use-package emmet-mode)
+
+;;;
 ;;;; JS
 
-(use-package js2-mode)
-(use-package web)
+(use-package js2-mode
+  :mode "\\.js$"
+  :hook (js2-mode . lsp-deferred))
+
+;;;
+;;;; Python
+
+(use-package python-mode
+  :hook (python-mode . lsp-deferred)
+  :init (setq python-shell-interpreter "python3"))
+
+(use-package virtualenvwrapper)
+
+;;;
+;;;; Java
+
+(use-package lsp-java
+  :hook (java-mode . lsp))
+
+(use-package dap-java :ensure nil)
 
 ;;;
 ;;;; W/E filetypes
 
-(use-package json-mode
-  :mode "\\.json$")
+(use-package lua-mode)
+(use-package json-mode :mode "\\.json$")
+(use-package vimrc-mode)
+(use-package ess)
+(use-package markdown-mode
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
+;; idk how this block works
+;; (use-package polymode)
+;; (use-package poly-markdown)
+;; (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
 
-;(use-package repl-toggle
-;  :ensure t
-;  :preface
-;  (defun clojure-repl ()
-;    "Open a Clojure REPL."
-;    (interactive)
-;    (pop-to-buffer (cider-current-repl nil 'ensure)))
-;
-;  (defun js-repl ()
-;    "Open a JavaScript REPL."
-;    (interactive)
-;    (if (indium-client-process-live-p) (indium-switch-to-repl-buffer) (nodejs-repl)))
-;
-;  (defun lua-repl ()
-;    "Open a Lua REPL."
-;    (interactive)
-;    (pop-to-buffer (process-buffer (lua-get-create-process))))
-;  :general
-;  (:keymaps
-;   'prog-mode-map
-;   :prefix local-leader-key
-;   "r" 'rtog/toggle-repl)
-;  :init
-;  (setq rtog/goto-buffer-fun 'pop-to-buffer)
-;  (setq rtog/mode-repl-alist
-;        '((emacs-lisp-mode . ielm)
-;          (clojure-mode . clojure-repl)
-;          (elm-mode . elm-repl-load)
-;          (go-mode . gorepl-run)
-;          (js-mode . js-repl)
-;          (lisp-mode . slime)
-;          (lua-mode . lua-repl)
-;          (nix-mode . nix-repl)
-;          (racket-mode . racket-repl)
-;                    (typescript-mode . run-ts))))
+(use-package direnv :config (direnv-mode))
