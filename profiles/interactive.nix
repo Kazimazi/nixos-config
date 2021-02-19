@@ -26,11 +26,6 @@
     programs.java = {
       enable = true;
     };
-    # information security & friends
-    programs.wireshark = {
-      enable = true;
-      package = pkgs.wireshark;
-    };
 
     home-manager.users.kazimazi = { pkgs, ... }: {
       programs.fzf.enable = true;

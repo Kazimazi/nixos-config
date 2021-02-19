@@ -12,6 +12,7 @@
     ../mixins/pipewire.nix
     ../mixins/qt.nix
     ../mixins/vscode.nix # fuck vscode >:(
+    ../mixins/wireshark.nix
   ];
   config = {
     sound = {

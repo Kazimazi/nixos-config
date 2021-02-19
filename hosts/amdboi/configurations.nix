@@ -71,8 +71,6 @@
           "video"
 
           "audio" # for pulsepipewire?
-          # TODO separate to mixin
-          "wireshark" # for wireshark obviously
         ];
       };
     };
