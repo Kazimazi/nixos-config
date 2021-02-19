@@ -32,6 +32,8 @@
           "image/png"  = "imv.desktop";
           "image/jpg" = "imv.desktop";
           "image/jpeg" = "imv.desktop";
+          "inode/directory" = "org.gnome.Nautilus.desktop";
+          "text/plain" = "emacs.desktop";
           "video/*" = "mpv.desktop";
         };
         associations.added = {
