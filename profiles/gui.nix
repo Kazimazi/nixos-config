@@ -19,8 +19,9 @@
     };
 
     hardware = {
-      #pulseaudio = { enable = true; }; # set in pipewire.nix
-      ckb-next.enable = false;
+      bluetooth.enable = true;
+      # pulseaudio.enable = true; # set in pipewire.nix
+      ckb-next.enable = false; # used to have an error with systemd, TODO try again
     };
 
     environment.systemPackages = with pkgs; [
@@ -63,7 +64,7 @@
         papirus-icon-theme # fills some missing icons
 
         master.discord
-        my-nixpkgs.element-desktop
+        master.element-desktop
         skypeforlinux
         zoom-us
 

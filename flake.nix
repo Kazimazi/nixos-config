@@ -2,7 +2,6 @@
   description = "muh nixos-config with flakes and home-manager";
   # thx colemickens cool conf :)
 
-  # TODO use stable
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     my-nixpkgs.url = "github:Kazimazi/nixpkgs/master";
