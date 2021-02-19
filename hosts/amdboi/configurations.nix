@@ -88,7 +88,7 @@
 
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [ rocm-opencl-icd ]; # OpenCL
+        extraPackages = with pkgs; [ ];
       };
     };
 
