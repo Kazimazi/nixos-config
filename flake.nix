@@ -23,9 +23,6 @@
       inputs.master.follows = "master";
     };
 
-    firefox.url = "github:colemickens/flake-firefox-nightly";
-    firefox.inputs.nixpkgs.follows = "nixpkgs";
-
     emacs.url = "github:nix-community/emacs-overlay";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
