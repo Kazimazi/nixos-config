@@ -13,10 +13,24 @@
     environment.systemPackages = with pkgs; [
       ripgrep
       fzf # emacs tramp couldn't use fzf, how about now?
+
+      # information security & friends
+      ncat
+      nmap
     ];
 
     # HM: ca.desrt.dconf error:
     services.dbus.packages = with pkgs; [ gnome3.dconf ];
+
+    # yuck
+    programs.java = {
+      enable = true;
+    };
+    # information security & friends
+    programs.wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
 
     home-manager.users.kazimazi = { pkgs, ... }: {
       programs.fzf.enable = true;
@@ -33,6 +47,17 @@
 
         (ghc.withPackages (hp: with hp; [ haskell-language-server ]))
         cabal-install
+        # alkfejlesztes stack
+        maven
+
+        # multimedia stack
+        nodePackages.vscode-html-languageserver-bin
+        nodePackages.vscode-css-languageserver-bin
+        nodePackages.http-server
+        nodePackages.typescript
+        nodePackages.typescript-language-server
+        nodePackages.eslint
+        nodePackages.vscode-json-languageserver-bin
 
         youtube-dl
         ffmpeg
