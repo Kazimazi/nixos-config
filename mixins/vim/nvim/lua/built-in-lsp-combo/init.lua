@@ -155,6 +155,23 @@ use {
       nvim_lsp.pyls.setup {
          on_attach = on_attach,
       }
+      local filetypes = {
+         javascript = 'prettier, eslint',
+         json = 'prettier',
+         html = 'prettier',
+         css = 'prettier',
+         markdown = 'prettier',
+      }
+      -- when will I ever need to set it up?
+      nvim_lsp.diagnosticls.setup {
+         on_attach = on_attach,
+         root_dir = nvim_lsp.util.root_pattern('.git'),
+         filetypes = {},
+         init_options = {
+            linters = {
+            },
+         },
+      }
    end
 }
 use {

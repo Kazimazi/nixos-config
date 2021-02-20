@@ -37,6 +37,9 @@
 
             # for telescope
             bat fd
+
+            # for nvim built in lsp
+            nodePackages.diagnostic-languageserver
           ];
           file = {
             ".config/nvim/".recursive = true;

@@ -84,6 +84,19 @@ if fn.exists('g:vscode') == 0 then
          end
       }
       use { 'kyazdani42/nvim-web-devicons' }
+      use { 'sbdchd/neoformat',
+            config = function()
+               vim.api.nvim_set_keymap('', '<leader>;', ':Neoformat<cr>', { noremap = true })
+               -- Have Neoformat use &formatprg as a formatter
+               vim.g.neoformat_try_formatprg = 1
+               -- Enable alignment
+               vim.g.neoformat_basic_format_align = 1
+               -- Enable tab to spaces conversion
+               vim.g.neoformat_basic_format_retab = 1
+               -- Enable trimmming of trailing whitespace
+               vim.g.neoformat_basic_format_trim = 1
+            end
+      }
       use {
          'lewis6991/gitsigns.nvim',
          requires = { 'nvim-lua/plenary.nvim' },
