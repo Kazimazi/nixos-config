@@ -5,36 +5,6 @@ use {
    requires = {
       {
          'hrsh7th/vim-vsnip',
-         config = function()
-            vim.api.nvim_exec([[
-              " Expand
-              imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-              smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-
-              " Expand or jump
-              imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-              smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-
-              " Jump forward or backward
-              imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-              smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-              imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-              smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-
-              " Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
-              " See https://github.com/hrsh7th/vim-vsnip/pull/50
-              nmap        s   <Plug>(vsnip-select-text)
-              xmap        s   <Plug>(vsnip-select-text)
-              nmap        S   <Plug>(vsnip-cut-text)
-              xmap        S   <Plug>(vsnip-cut-text)
-
-              " If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
-              let g:vsnip_filetypes = {}
-              let g:vsnip_filetypes.javascriptreact = ['javascript']
-              let g:vsnip_filetypes.typescriptreact = ['typescript']
-              " TODO set up let g:vsnip_snippet_dir =
-            ]], false)
-         end
       },
       {
          'hrsh7th/vim-vsnip-integ',
@@ -76,6 +46,7 @@ use {
    config = function()
       local nvim_lsp = require('lspconfig')
       local completion = require('compe')
+
       local on_attach = function(_client, bufnr)
          vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
          vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
@@ -93,7 +64,7 @@ use {
          lsp_mapper('n', '<leader>D',  'vim.lsp.buf.type_definition()')
          lsp_mapper('n', 'gr',         'vim.lsp.buf.references()')
          lsp_mapper('n', 'gi',         'vim.lsp.buf.implementation()')
-         lsp_mapper('n', '<leader>n',         'vim.lsp.buf.rename()')
+         lsp_mapper('n', '<leader>n',  'vim.lsp.buf.rename()')
          lsp_mapper('n', 'K',          'vim.lsp.buf.hover()')
          lsp_mapper('n', 'C-k',        'vim.lsp.buf.signature_help()')
          lsp_mapper('n', '<leader>ca', 'vim.lsp.buf.code_action()')
@@ -197,7 +168,7 @@ use {
          ensure_installed = 'all', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
          highlight = {
             enable = true,
-            disable = { 'c', 'rust' },  -- list of language that will be disabled
+            disable = { },  -- list of language that will be disabled
             --custom_captures = {
             --  -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
             --  ['foo.bar'] = 'Identifier',
@@ -213,7 +184,7 @@ use {
             },
          },
          indent = {
-            enable = true
+            enable = false
          }
      }
    end

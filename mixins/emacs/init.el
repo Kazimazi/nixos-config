@@ -605,10 +605,7 @@
         company-dabbrev-downcase nil
         company-dabbrev-ignore-case nil
         company-tooltip-align-annotations t
-        company-require-match 'never
-        company-global-modes '(not erc-mode message-mode help-mode gud-mode eshell-mode shell-mode)
-        company-backends '(company-capf))
-  :config (global-company-mode +1))
+        company-require-match 'never))
 
 ;; FIXME bad with lsp-ui
 (use-package yasnippet

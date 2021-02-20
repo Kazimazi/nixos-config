@@ -49,15 +49,6 @@
         # alkfejlesztes stack
         maven
 
-        # multimedia stack
-        nodePackages.vscode-html-languageserver-bin
-        nodePackages.vscode-css-languageserver-bin
-        nodePackages.http-server
-        nodePackages.typescript
-        nodePackages.typescript-language-server
-        nodePackages.eslint
-        nodePackages.vscode-json-languageserver-bin
-
         youtube-dl
         ffmpeg
 
