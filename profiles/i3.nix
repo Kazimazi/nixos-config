@@ -14,7 +14,7 @@ in {
     ../mixins/i3.nix
   ];
   config = {
-    #environment.systemPackages = [ all-heads primary-head ];
+    environment.systemPackages = [ ];
     services.xserver = {
       enable = true;
       desktopManager.wallpaper.mode = "fill";
@@ -33,6 +33,7 @@ in {
       #  { monitorConfig = ''Option "LeftOf" "DisplayPort-0"''; "output" = "HDMI-A-0"; }
       #];
     };
+    #services.xrdp.enable = true; # testing stuff
     home-manager.users.kazimazi = { pkgs, ... }: {
       home.packages = with pkgs; [ ];
     };
