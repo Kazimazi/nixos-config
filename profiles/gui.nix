@@ -20,7 +20,6 @@
     };
 
     hardware = {
-      bluetooth.enable = true;
       # pulseaudio.enable = true; # set in pipewire.nix
       ckb-next.enable = false; # used to have an error with systemd, TODO try again
     };
