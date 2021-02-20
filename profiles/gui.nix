@@ -9,8 +9,10 @@
     ../mixins/fonts.nix
     ../mixins/firefox.nix
     ../mixins/gtk.nix
+    ../mixins/pipewire.nix
     ../mixins/qt.nix
-    ../mixins/vscode.nix
+    ../mixins/vscode.nix # fuck vscode >:(
+    ../mixins/wireshark.nix
   ];
   config = {
     sound = {
@@ -18,8 +20,9 @@
     };
 
     hardware = {
-      pulseaudio = { enable = true; };
-      ckb-next.enable = false;
+      bluetooth.enable = true;
+      # pulseaudio.enable = true; # set in pipewire.nix
+      ckb-next.enable = false; # used to have an error with systemd, TODO try again
     };
 
     environment.systemPackages = with pkgs; [
@@ -32,15 +35,27 @@
       };
 
       programs = {
-        chromium.enable = true;
+        chromium = {
+          enable = true;
+          package = pkgs.chromium;
+        };
+        zathura = {
+          enable = true;
+          # how do I enable plugins explicitly?
+          package = with pkgs; ( zathura.override { useMupdf = false; } ); # use poppler instead of mupdf
+          extraConfig = ''
+            set selection-clipboard clipboard
+          '';
+        };
       };
 
       home.packages = with pkgs; [
         imv
         gnome3.eog
+        okular
+        evince
 
         gnome3.nautilus
-
 
         nyxt
 
@@ -48,10 +63,9 @@
         texlive.combined.scheme-full # for latex
         keepassxc
         papirus-icon-theme # fills some missing icons
-        zathura
 
         master.discord
-        my-nixpkgs.element-desktop
+        master.element-desktop
         skypeforlinux
         zoom-us
 
@@ -64,9 +78,6 @@
 
         lispPackages.quicklisp
         sbcl
-
-        jetbrains.webstorm
-        blender
 
         octaveFull
 

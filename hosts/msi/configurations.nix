@@ -66,6 +66,7 @@ in {
       defaultUserShell = pkgs.fish;
       users.kazimazi = {
         isNormalUser = true;
+        initialHashedPassword = "test";
         home = "/home/kazimazi";
         extraGroups = [
           "wheel"
@@ -90,6 +91,8 @@ in {
 
     services.xserver.videoDrivers = [ "nvidia" ];
     services.xserver.libinput.enable = true;
+
+    services.fstrim.enable = true;
 
     hardware = {
       opengl = {

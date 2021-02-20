@@ -2,7 +2,6 @@
   description = "muh nixos-config with flakes and home-manager";
   # thx colemickens cool conf :)
 
-  # TODO use stable
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     my-nixpkgs.url = "github:Kazimazi/nixpkgs/master";
@@ -22,9 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.master.follows = "master";
     };
-
-    firefox.url = "github:colemickens/flake-firefox-nightly";
-    firefox.inputs.nixpkgs.follows = "nixpkgs";
 
     emacs.url = "github:nix-community/emacs-overlay";
 
@@ -58,8 +54,6 @@
             overlays
             inputs.nixpkgs-wayland.overlay
             inputs.nur.overlay
-            inputs.emacs.overlay
-            inputs.neovim-nightly-overlay.overlay
           ];
         })
         ./hosts/amdboi/configurations.nix
@@ -74,8 +68,6 @@
           nixpkgs.overlays = [
             overlays
             inputs.nur.overlay
-            inputs.emacs.overlay
-            inputs.neovim-nightly-overlay.overlay
           ];
         })
         ./hosts/msi/configurations.nix

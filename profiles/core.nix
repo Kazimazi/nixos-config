@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../mixins/neovim.nix
+    ../mixins/vim/neovim.nix
     ../mixins/emacs/emacs.nix
     ../mixins/git.nix
     ../mixins/fish.nix

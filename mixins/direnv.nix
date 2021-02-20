@@ -3,11 +3,10 @@
 {
   config = {
     home-manager.users.kazimazi = { pkgs, ... }: {
-      programs.vscode = {
-        enable = true;
-        package = pkgs.vscode;
+      programs = {
+        direnv.enable = true;
+        direnv.enableNixDirenvIntegration = true;
       };
     };
   };
 }
-

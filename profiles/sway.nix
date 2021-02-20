@@ -23,21 +23,21 @@
         qt5.qtwayland
         gnome3.adwaita-icon-theme
       ];
+      wayland.windowManager.sway = {
+        extraSessionCommands = ''
+          export MOZ_ENABLE_WAYLAND="1";
+          export MOZ_USE_XINPUT2="1";
 
-      home.sessionVariables = {
-        MOZ_ENABLE_WAYLAND = "1";
-        # better place for it?
-        # GTK_USE_PORTAL = 1; # messes up my gtk fonts, and cursor
+          export XDG_SESSION_TYPE="wayland";
+          export XDG_CURRENT_DESKTOP="sway";
 
-        XDG_SESSION_TYPE = "wayland";
-        XDG_CURRENT_DESKTOP = "sway";
+          export SDL_VIDEODRIVER="wayland";
 
-        SDL_VIDEODRIVER = "wayland";
-        QT_QPA_PLATFORM = "wayland-egl";
+          export QT_QPA_PLATFORM="wayland";
+          export QT_WAYLAND_DISABLE_WINDOWDECORATION="1";
 
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-
-        _JAVA_AWT_WM_NONREPARENTING = "1";
+          export _JAVA_AWT_WM_NONREPARENTING="1";
+        '';
       };
     };
   };

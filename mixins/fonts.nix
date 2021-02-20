@@ -6,10 +6,8 @@
       fontDir.enable= true;
       fonts = with pkgs; [
         emacs-all-the-icons-fonts
-        ( nerdfonts.override { fonts = [ "VictorMono" "MPlus" "Iosevka" ]; })
+        nerdfonts
         source-han-sans-japanese
-
-        fira-code
         noto-fonts
         noto-fonts-extra
         noto-fonts-cjk
@@ -17,9 +15,9 @@
       ];
 
       fontconfig.defaultFonts = {
-        serif = [ "Noto Serif" "Noto Color Emoji" ];
-        sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
-        monospace = [ "Fira Code" "Noto Color Emoji" ];
+        serif = [ "Noto Serif" ];
+        sansSerif = [ "Noto Sans" ];
+        monospace = [ "Noto Sans Mono" ];
         emoji = [ "Noto Color Emoji" ];
       };
     };

@@ -2,18 +2,20 @@
 
 {
   config = {
-    services.pipewire.enable = true;
-
-    xdg.portal.enable = true;
-    xdg.portal.gtkUsePortal = true;
-    xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
+    xdg.portal = {
+      enable = true;
+      gtkUsePortal = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
+    };
 
     # NOTE might not need this
     # https://github.com/NixOS/nixpkgs/issues/16327
     services.gnome3.at-spi2-core.enable = true;
 
     home-manager.users.kazimazi = { pkgs, ... }: {
-      # NOTE experiment
       xdg.mimeApps =
       let
         web-browser = "firefox.desktop";
@@ -26,14 +28,17 @@
           "x-scheme-handler/about" = web-browser;
           "x-scheme-handler/unknown" = web-browser;
           "x-scheme-handler/mailto" = web-browser;
+          "application/pdf" = "org.pwmt.zathura-pdf-poppler.desktop";
+          "image/png"  = "imv.desktop";
+          "image/jpg" = "imv.desktop";
+          "image/jpeg" = "imv.desktop";
+          "inode/directory" = "org.gnome.Nautilus.desktop";
+          "text/plain" = "emacs.desktop";
+          "video/*" = "mpv.desktop";
         };
-        associations = {
-          added = {
-            "image/png"  = "imv.desktop";
-            "image/jpeg" = "imv.desktop";
-            "application/pdf" = "zathura.desktop";
-            "video/*" = "mpv.desktop";
-          };
+        associations.added = {
+        };
+        associations.removed = {
         };
       };
 

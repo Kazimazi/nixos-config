@@ -1,0 +1,18 @@
+{
+    "codeLens.enable": true,
+    "languageserver": {
+        "haskell": {
+            "command": "haskell-language-server-wrapper",
+            "args": ["--lsp"],
+            "rootPatterns": [".git", "*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+            "filetypes": ["haskell", "lhaskell"],
+            "initializationOptions": {
+                "languageServerHaskell": {
+                    "hlintOn": true,
+                    "maxNumberOfProblems": 10,
+                    "completionSnippetsOn": true
+                }
+            }
+        }
+    }
+}
