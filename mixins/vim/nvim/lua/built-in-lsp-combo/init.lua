@@ -2,14 +2,6 @@ local use = require('packer').use
 
 use {
    'hrsh7th/nvim-compe',
-   requires = {
-      {
-         'hrsh7th/vim-vsnip',
-      },
-      {
-         'hrsh7th/vim-vsnip-integ',
-      }
-   },
    config = function()
       vim.o.completeopt = 'menuone,noselect'
       require('compe').setup {
@@ -28,15 +20,8 @@ use {
 
          source = {
             path = true;
-            buffer = true;
-            calc = true;
-            vsnip = true;
             nvim_lsp = true;
             nvim_lua = true;
-            spell = true;
-            tags = true;
-            snippets_nvim = true;
-            treesitter = true;
          }
        }
    end
@@ -154,13 +139,6 @@ use {
       }
       nvim_lsp.pyls.setup {
          on_attach = on_attach,
-      }
-      local filetypes = {
-         javascript = 'prettier, eslint',
-         json = 'prettier',
-         html = 'prettier',
-         css = 'prettier',
-         markdown = 'prettier',
       }
       -- when will I ever need to set it up?
       nvim_lsp.diagnosticls.setup {
