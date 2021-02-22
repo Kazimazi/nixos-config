@@ -1,6 +1,5 @@
 { pkgs, ... }:
 
-# TODO fix color in vim and emacs
 {
   config = {
     home-manager.users.kazimazi = { pkgs, ... }: {
