@@ -8,6 +8,7 @@
     ../mixins/gpg.nix
     ../mixins/vifm/vifm.nix
     ../mixins/direnv.nix
+    ../mixins/adb.nix
   ];
   config = {
     environment.systemPackages = with pkgs; [
