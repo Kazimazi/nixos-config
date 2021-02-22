@@ -38,6 +38,7 @@ vim.o.writebackup = false
 -- map the leader key
 -- map('n', '<Space>', '', {})
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
 
 map('n', '<leader><esc>', ':nohlsearch<cr>', { noremap = true })
 map('n', '<leader>w', ':w<cr>', { noremap = true })
@@ -110,7 +111,7 @@ if fn.exists('g:vscode') == 0 then
          'junegunn/fzf.vim',
          config = function()
             local map = vim.api.nvim_set_keymap
-            map('n', '<leader>a', ':Files<cr>', { noremap = true })
+            map('n', '<leader>e', ':Files<cr>', { noremap = true })
             map('n', '<leader>r', ':Rg<cr>', { noremap = true })
             map('n', '<leader>g', ':GFiles<cr>', { noremap = true })
             map('n', '<leader>b', ':Buffers<cr>', { noremap = true })
@@ -120,7 +121,15 @@ if fn.exists('g:vscode') == 0 then
          'nvim-telescope/telescope.nvim',
          requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
       }
-      require('built-in-lsp-combo')
-      --require('coc')
+      use {'sirver/UltiSnips'}
+      use {'honza/vim-snippets'}
+      use {'Olical/conjure'}
+      -- clojure stack
+      use {'clojure-vim/vim-jack-in',
+           requires = {{'tpope/vim-dispatch'}, {'radenling/vim-dispatch-neovim'}}}
+
+      -- require('built-in-lsp-combo')
+      require('coc')
+      require('treesitter')
    end)
 end

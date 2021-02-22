@@ -22,28 +22,34 @@
           vim = "nvim";
         };
 
-        programs.bat = { enable = true; };
-        home = {
-          packages = with pkgs; [
-            neovim-nightly
-            nodejs
-            python
+        programs = {
+          neovim = {
+            enable = true;
+            package = pkgs.neovim-nightly;
+            withPython3 = true;
+            extraConfig = (builtins.readFile ./nvim/init.vim);
+            withNodeJs = true;
+            extraPackages = with pkgs; [
             # TODO I should really make a package pack thingy for Lang Servers and friends.
             # TODO for fzf search utils but I already have a mixin for it so shouldn't I just import that?
             fzf ripgrep
-
             # idk if I need any of this
             clang-tools gcc
-
             # for telescope
             bat fd
-
             # for nvim built in lsp
             nodePackages.diagnostic-languageserver
-          ];
+            ];
+          };
+        };
+
+        programs.bat = { enable = true; };
+
+        home = {
           file = {
-            ".config/nvim/".recursive = true;
-            ".config/nvim/".source = ./nvim;
+            ".config/nvim/lua".recursive = true;
+            ".config/nvim/lua".source = ./nvim/lua;
+            ".config/nvim/coc-settings.json".source = ./nvim/coc-settings.json;
           };
         };
       };
