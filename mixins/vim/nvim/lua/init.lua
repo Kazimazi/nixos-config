@@ -25,11 +25,8 @@ vim.o.sidescroll = 1
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
-
-vim.api.nvim_exec([[
-  set list
-  set listchars+=space:·
-]], false)
+vim.wo.list = true
+vim.o.listchars = vim.o.listchars .. ',space:·'
 
 --Decrease update time
 vim.o.updatetime = 250
@@ -39,8 +36,6 @@ vim.bo.swapfile = false
 vim.o.backup = false
 vim.o.writebackup = false
 
--- map the leader key
--- map('n', '<Space>', '', {})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
@@ -52,7 +47,7 @@ map('n', '<leader>2', ':e .<cr>', { noremap = true })
 
 map('n', '<leader>t', ':tabnew<cr>', { noremap = true })
 
-map('n', 'Y', 'y$', { noremap = true })
+map('n', 'Y', 'yg_', { noremap = true })
 
 map('n', 'j', "(v:count == 0 ? 'gj' : 'j')", { noremap = true, expr = true, silent = true })
 map('n', 'k', "(v:count == 0 ? 'gk' : 'k')", { noremap = true, expr = true, silent = true })
@@ -77,6 +72,7 @@ return require('packer').startup(function()
    use { 'tpope/vim-surround', event = 'VimEnter *' } -- Load on an autocommand event
    use { 'andymass/vim-matchup', event = 'VimEnter *' }
    use {'tpope/vim-fugitive'}
+   -- use {'kdheepak/lazygit.nvim'} -- try it sometimes... looks cool
    use { 'vim-airline/vim-airline' }
 
    use 'preservim/nerdcommenter'
@@ -93,22 +89,13 @@ return require('packer').startup(function()
 
    use { 'kyazdani42/nvim-web-devicons' }
    -- use { 'glepnir/indent-guides.nvim' } -- indent-guides
-
    -- use { 'glepnir/galaxyline.nvim' } -- looks very satisfactory
-   -- use { 'nvim-lua/lsp-status.nvim', } -- build it mayself?
+   -- use { 'nvim-lua/lsp-status.nvim', } -- build it myself?
    -- use { 'romgrk/barbar.nvim', } -- looks cool
 
    use { 'sbdchd/neoformat',
          config = function()
             vim.api.nvim_set_keymap('', '<leader>;', ':Neoformat<cr>', { noremap = true })
-            -- Have Neoformat use &formatprg as a formatter
-            vim.g.neoformat_try_formatprg = 1
-            -- Enable alignment
-            vim.g.neoformat_basic_format_align = 1
-            -- Enable tab to spaces conversion
-            vim.g.neoformat_basic_format_retab = 1
-            -- Enable trimmming of trailing whitespace
-            vim.g.neoformat_basic_format_trim = 1
          end
    }
    use {
@@ -140,7 +127,6 @@ return require('packer').startup(function()
    -- clojure stack
    use {'clojure-vim/vim-jack-in',
         requires = {{'tpope/vim-dispatch'}, {'radenling/vim-dispatch-neovim'}}}
-
 
    -- require('built-in-lsp-combo')
    require('coc')
