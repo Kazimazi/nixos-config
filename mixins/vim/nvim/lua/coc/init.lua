@@ -10,7 +10,7 @@ use {
    disable = false,
    config = function()
       -- CocInstall these extensions
-      vim.g.coc_global_extensions = {'coc-html', 'coc-tsserver', 'coc-java', 'coc-snippets', 'coc-conjure'}
+      vim.g.coc_global_extensions = {'coc-pairs', 'coc-html', 'coc-tsserver', 'coc-java', 'coc-snippets', 'coc-conjure'}
 
       vim.o.shortmess = vim.o.shortmess .. 'c'
 
@@ -70,6 +70,10 @@ use {
       vim.api.nvim_set_keymap('o', 'ac', ":call coc#rpc#request('selectSymbolRange', [v:false, '', ['Interface', 'Struct', 'Class']])<CR>", { noremap = true, silent = true })
 
       vim.api.nvim_exec([[
+        " Make <CR> auto-select the first completion item and notify coc.nvim to
+        " format on enter, <cr> could be remapped by other vim plugin
+        inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
         augroup mygroup
           autocmd!
           " Setup formatexpr specified filetype(s).
@@ -107,23 +111,23 @@ use {
         " provide custom statusline: lightline.vim, vim-airline.
         set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-        " Mappings for CoCList
-        " Show all diagnostics.
-        nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-        " Manage extensions.
-        nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-        " Show commands.
-        nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-        " Find symbol of current document.
-        nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-        " Search workspace symbols.
-        nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-        " Do default action for next item.
-        nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-        " Do default action for previous item.
-        nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-        " Resume latest coc list.
-        nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+        " " Mappings for CoCList
+        " " Show all diagnostics.
+        " nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+        "  Manage extensions.
+        " nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+        "  Show commands.
+        " nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+        "  Find symbol of current document.
+        " nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+        "  Search workspace symbols.
+        " nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+        "  Do default action for next item.
+        " nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+        "  Do default action for previous item.
+        " nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+        "  Resume latest coc list.
+        " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
         " coc-snippets
         " Use <C-l> for trigger snippet expand.

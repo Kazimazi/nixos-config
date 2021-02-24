@@ -7,12 +7,16 @@ local map = vim.api.nvim_set_keymap
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.o.smartindent = true
+vim.bo.smartindent = true
 
-vim.o.expandtab = true
+vim.bo.expandtab = true
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
+
+vim.api.nvim_exec([[
+   autocmd Filetype java setlocal tabstop=4 shiftwidth=4 softtabstop=4
+]], false)
 
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
@@ -31,7 +35,7 @@ vim.api.nvim_exec([[
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
-vim.o.swapfile = false
+vim.bo.swapfile = false
 vim.o.backup = false
 vim.o.writebackup = false
 
@@ -73,7 +77,9 @@ if fn.exists('g:vscode') == 0 then
       use { 'sheerun/vim-polyglot',}
       use { 'tpope/vim-surround', event = 'VimEnter *' } -- Load on an autocommand event
       use { 'andymass/vim-matchup', event = 'VimEnter *' }
-      use '9mm/vim-closer'
+      use {'tpope/vim-fugitive'}
+      use { 'vim-airline/vim-airline' }
+
       use 'preservim/nerdcommenter'
       use {
          'mhartington/oceanic-next',
@@ -84,7 +90,15 @@ if fn.exists('g:vscode') == 0 then
             vim.cmd[[colorscheme OceanicNext]]
          end
       }
+
+
       use { 'kyazdani42/nvim-web-devicons' }
+      -- use { 'glepnir/indent-guides.nvim' } -- indent-guides
+
+      -- use { 'glepnir/galaxyline.nvim' } -- looks very satisfactory
+      -- use { 'nvim-lua/lsp-status.nvim', } -- build it mayself?
+      -- use { 'romgrk/barbar.nvim', } -- looks cool
+
       use { 'sbdchd/neoformat',
             config = function()
                vim.api.nvim_set_keymap('', '<leader>;', ':Neoformat<cr>', { noremap = true })
@@ -127,6 +141,7 @@ if fn.exists('g:vscode') == 0 then
       -- clojure stack
       use {'clojure-vim/vim-jack-in',
            requires = {{'tpope/vim-dispatch'}, {'radenling/vim-dispatch-neovim'}}}
+
 
       -- require('built-in-lsp-combo')
       require('coc')
