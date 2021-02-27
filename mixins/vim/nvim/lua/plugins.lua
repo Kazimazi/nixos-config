@@ -31,7 +31,7 @@ return require('packer').startup(function()
       config = function() require('config.gitsigns') end
    }
 
-   use 'preservim/nerdcommenter'
+   use { 'preservim/nerdcommenter', config = function () require('config.nerdcommenter') end }
    use {
       'mhartington/oceanic-next',
       config = function ()
