@@ -1,7 +1,6 @@
 {
     "codeLens.enable": true,
     "html.autoClosingTags": true,
-    "java.referencesCodeLens.enabled": true,
     "java.signatureHelp.enabled": true,
     "languageserver": {
         "haskell": {
