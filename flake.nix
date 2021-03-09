@@ -4,8 +4,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    my-nixpkgs.url = "github:Kazimazi/nixpkgs/master";
-    #my-nixpkgs.url = "/home/kazimazi/dev/nix/nixpkgs";
     master.url = "github:nixos/nixpkgs/master";
     stable.url = "github:nixos/nixpkgs/nixos-20.09";
 

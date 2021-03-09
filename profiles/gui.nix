@@ -63,8 +63,8 @@
         keepassxc
         papirus-icon-theme # fills some missing icons
 
-        master.discord
-        master.element-desktop
+        discord
+        element-desktop
         skypeforlinux
         zoom-us
 

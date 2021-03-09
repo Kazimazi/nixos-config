@@ -28,6 +28,9 @@
       enable = true;
     };
 
+    # services.elasticsearch.enable = true;
+    # services.elasticsearch.package = (pkgs.elasticsearch.override { enableUnfree = false; });
+
     home-manager.users.kazimazi = { pkgs, ... }: {
       programs.fzf.enable = true;
       home.packages = with pkgs; [
