@@ -9,6 +9,7 @@
     ../mixins/vifm/vifm.nix
     ../mixins/direnv.nix
     ../mixins/adb.nix
+    ../mixins/docker.nix
   ];
   config = {
     environment.systemPackages = with pkgs; [
