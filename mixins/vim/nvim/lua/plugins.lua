@@ -43,6 +43,11 @@ return require('packer').startup(function()
    }
    use 'kyazdani42/nvim-web-devicons'
    use 'vim-airline/vim-airline'
+   use {
+      'lukas-reineke/indent-blankline.nvim', branch = "lua",
+      disable = true,
+      config = function() end
+   }
    use { 'glepnir/indent-guides.nvim', disable = true } -- indent-guides
    use { 'glepnir/galaxyline.nvim', disable = true } -- looks very satisfactory
    use { 'nvim-lua/lsp-status.nvim', disable = true } -- build it myself?

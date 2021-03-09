@@ -15,15 +15,15 @@ local on_attach = function(_client, bufnr)
    end
    lsp_mapper('n', 'gd',         'vim.lsp.buf.definition()')
    lsp_mapper('n', 'gD',         'vim.lsp.buf.declaration()')
-   lsp_mapper('n', '<leader>D',  'vim.lsp.buf.type_definition()')
+   lsp_mapper('n', 'gy',         'vim.lsp.buf.type_definition()')
    lsp_mapper('n', 'gr',         'vim.lsp.buf.references()')
    lsp_mapper('n', 'gi',         'vim.lsp.buf.implementation()')
    lsp_mapper('n', '<leader>n',  'vim.lsp.buf.rename()')
    lsp_mapper('n', 'K',          'vim.lsp.buf.hover()')
    lsp_mapper('n', 'C-k',        'vim.lsp.buf.signature_help()')
-   lsp_mapper('n', '<leader>ca', 'vim.lsp.buf.code_action()')
+   lsp_mapper('n', '<leader>ac', 'vim.lsp.buf.code_action()')
    lsp_mapper('n', '<leader>d',  'vim.lsp.diagnostic.set_loclist()')
-   lsp_mapper('n', '<leader>e',  'vim.lsp.diagnostic.show_line_diagnostics()')
+   lsp_mapper('n', '<leader>l',  'vim.lsp.diagnostic.show_line_diagnostics()')
    lsp_mapper('n', '[d',         'vim.lsp.diagnostic.goto_prev()')
    lsp_mapper('n', ']d',         'vim.lsp.diagnostic.goto_next()')
 
@@ -108,14 +108,4 @@ nvim_lsp.hls.setup {
 }
 nvim_lsp.pyls.setup {
    on_attach = on_attach,
-}
--- when will I ever need to set it up?
-nvim_lsp.diagnosticls.setup {
-   on_attach = on_attach,
-   root_dir = nvim_lsp.util.root_pattern('.git'),
-   filetypes = {},
-   init_options = {
-      linters = {
-      },
-   },
 }
