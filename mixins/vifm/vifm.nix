@@ -389,7 +389,7 @@
           " uncommenting one of lines below will result in ignoring 'vi[x]cmd' option
           " for unknown file types.
           " For *nix:
-          filetype * xdg-open %f &
+          filetype * xdg-open %f %i &
           " For OS X:
           " filetype * open
           " For Windows:
