@@ -714,6 +714,7 @@
   :init
   (setq lsp-auto-guess-root nil
         lsp-idle-delay 0.300
+        lsp-clients-clangd-executable "clangd"
         lsp-keymap-prefix "C-c l")
   (setq lsp-enable-snippet t)
   :hook (lsp-mode . lsp-enable-which-key-integration))
