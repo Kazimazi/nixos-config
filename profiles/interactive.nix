@@ -10,6 +10,7 @@
     ../mixins/direnv.nix
     ../mixins/adb.nix
     ../mixins/docker.nix
+    ../mixins/virt.nix
   ];
   config = {
     environment.systemPackages = with pkgs; [
