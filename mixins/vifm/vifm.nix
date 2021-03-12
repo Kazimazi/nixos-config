@@ -5,6 +5,7 @@
     environment.systemPackages = with pkgs; [
       tree # for directory previews
       mediainfo # for the mediainfo program (audio and video information)
+      ( poppler.override { utils = true; } )
     ];
     home-manager.users.kazimazi = { pkgs, ... }: {
       home.file = {
@@ -183,7 +184,7 @@
 
           "" Pdf
           "filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
-          "fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
+          fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
           "
           "" PostScript
           "filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
@@ -292,34 +293,19 @@
           "" Torrent
           "filetype {*.torrent},<application/x-bittorrent> ktorrent %f &
           "fileviewer {*.torrent},<application/x-bittorrent> dumptorrent -v %c
-          "
-          "" FuseZipMount
-          "filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
-          "        \<application/zip,application/java-archive>
-          "       \ {Mount with fuse-zip}
-          "       \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
-          "       \ {View contents}
-          "       \ zip -sf %c | less,
-          "       \ {Extract here}
-          "       \ tar -xf %c,
-          "fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
-          "
-          "" ArchiveMount
-          "filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz},
-          "        \<application/x-tar>
-          "       \ {Mount with archivemount}
-          "       \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
-          "fileviewer *.tgz,*.tar.gz tar -tzf %c
-          "fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
-          "fileviewer *.tar.txz,*.txz xz --list %c
-          "fileviewer {*.tar},<application/x-tar> tar -tf %c
-          "
-          "" Rar2FsMount and rar archives
-          "filetype {*.rar},<application/x-rar>
-          "       \ {Mount with rar2fs}
-          "       \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
-          "fileviewer {*.rar},<application/x-rar> unrar v %c
-          "
+
+          " FuseZipMount
+          fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
+
+          " ArchiveMount
+          fileviewer *.tgz,*.tar.gz tar -tzf %c
+          fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
+          fileviewer *.tar.txz,*.txz xz --list %c
+          fileviewer {*.tar},<application/x-tar> tar -tf %c
+
+          " Rar2FsMount and rar archives
+          fileviewer {*.rar},<application/x-rar> unrar v %c
+
           "" IsoMount
           "filetype {*.iso},<application/x-iso9660-image>
           "       \ {Mount with fuseiso}
