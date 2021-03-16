@@ -16,6 +16,7 @@
 
     nixpkgs-wayland = {
       url = "github:colemickens/nixpkgs-wayland";
+      # url = "/home/kazimazi/dev/nix-stuff/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.master.follows = "master";
     };
