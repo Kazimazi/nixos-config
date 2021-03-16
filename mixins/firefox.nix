@@ -53,9 +53,10 @@
                 "extensions.webextensions.restrictedDomains" = "";
 
                 #"gfx.webrender.all" = true;
-                "media.ffmpeg.vaapi.enabled" = true;
-                "media.ffvpx.enabled" = false;
+                "media.ffmpeg.vaapi.enabled" = true; # enable the use of VA-API with FFmpeg
+                "media.ffvpx.enabled" = false; # disable internal decoders for VP8/VP9 explicitly
                 "widget.wayland-dmabuf-vaapi.enabled" = true;
+                # "media.av1.enabled" = false; # force sites like YouTube provide other formats tahn AV1, but I think my hardware supports it
               };
             };
           };
