@@ -6,6 +6,7 @@
     ../../mixins/common.nix
     ../../mixins/obs.nix
     ../../mixins/v4l2loopback.nix
+    ../../mixins/nextcloud.nix
 
     ../../profiles/sway.nix
     #../../profiles/desktop-gnome.nix

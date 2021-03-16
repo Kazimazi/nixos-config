@@ -5,7 +5,7 @@
     console.useXkbConfig = true;
     # try doas
     security.doas.enable = true;
-    security.sudo.enable = false;
+    security.sudo.enable = true;
     services = {
       openssh.enable = true;
       xserver = {
