@@ -61,7 +61,7 @@
     };
 
     users = {
-      defaultUserShell = pkgs.fish;
+      #defaultUserShell = pkgs.bash;
       users.kazimazi = {
         isNormalUser = true;
         initialHashedPassword = "test";

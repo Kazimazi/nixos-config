@@ -5,7 +5,8 @@
     ../mixins/vim/neovim.nix
     ../mixins/emacs/emacs.nix
     ../mixins/git.nix
-    ../mixins/fish.nix
+    # ../mixins/fish.nix
+    ../mixins/bash.nix
     ../mixins/tmux.nix
   ];
   config = {

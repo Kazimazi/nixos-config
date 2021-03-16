@@ -22,6 +22,11 @@
       nmap
     ];
 
+    environment.shellAliases = {
+      ll = "ls -l";
+      la = "ls -la";
+    };
+
     # HM: ca.desrt.dconf error:
     services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
@@ -29,6 +34,7 @@
     programs.java = {
       enable = true;
     };
+
 
     # services.elasticsearch.enable = true;
     # services.elasticsearch.package = (pkgs.elasticsearch.override { enableUnfree = false; });

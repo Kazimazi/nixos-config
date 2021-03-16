@@ -63,7 +63,7 @@ in {
     };
 
     users = {
-      defaultUserShell = pkgs.fish;
+      #defaultUserShell = pkgs.fish;
       users.kazimazi = {
         isNormalUser = true;
         initialHashedPassword = "test";
