@@ -19,6 +19,11 @@ return require('packer').startup(function()
    -- syntax highlighting
    use 'sheerun/vim-polyglot'
 
+   use { 'iamcco/markdown-preview.nvim',
+        run = 'cd app && yarn install',
+        -- cmd = 'MarkdownPreview'
+   }
+
    use { 'tpope/vim-surround', event = 'VimEnter *' }
    use { 'andymass/vim-matchup', event = 'VimEnter *' }
 
@@ -29,6 +34,14 @@ return require('packer').startup(function()
       'lewis6991/gitsigns.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
       config = function() require('config.gitsigns') end
+   }
+   use {
+      'lambdalisue/suda.vim',
+      config = function() end
+   }
+   use {
+      'christoomey/vim-tmux-navigator',
+      config = function() require('config.vim-tmux') end
    }
 
    use { 'preservim/nerdcommenter', config = function () require('config.nerdcommenter') end }
@@ -82,12 +95,14 @@ return require('packer').startup(function()
               { 'radenling/vim-dispatch-neovim' }
            }
          }
-      }
+      },
+      config = function() require('config.conjure') end
    }
 
    -- treesitter
    use {
       'nvim-treesitter/nvim-treesitter',
+      disable = true,
       run = ':TSUpdate',
       requires = {
          -- 'nvim-treesitter/nvim-treesitter-refactor',
@@ -102,6 +117,7 @@ return require('packer').startup(function()
    -- completion options
    use {
       'neoclide/coc.nvim',
+      disable = false,
       config = function() require('config.coc') end
    }
    use {

@@ -54,4 +54,9 @@ map('n', 'k', "(v:count == 0 ? 'gk' : 'k')", { noremap = true, expr = true, sile
 map('v', '<', '<gv', { noremap = true })
 map('v', '>', '>gv', { noremap = true })
 
+map('n', '<C-h>', '<C-w>h', { noremap = true })
+map('n', '<C-j>', '<C-w>j', { noremap = true })
+map('n', '<C-k>', '<C-w>k', { noremap = true })
+map('n', '<C-l>', '<C-w>l', { noremap = true })
+
 require('plugins')

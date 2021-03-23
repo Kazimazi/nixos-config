@@ -3,7 +3,7 @@
 {
   imports = [
     ../mixins/vim/neovim.nix
-    ../mixins/emacs/emacs.nix
+    #../mixins/emacs/emacs.nix
     ../mixins/git.nix
     # ../mixins/fish.nix
     ../mixins/bash.nix
@@ -14,7 +14,7 @@
     home-manager.useUserPackages = true;
     home-manager.users.kazimazi = { pkgs, ... }: {
       home.sessionVariables = {
-        EDITOR = "vim";
+        EDITOR = "nvim";
       };
       home.stateVersion = "20.09";
     };

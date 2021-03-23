@@ -10,6 +10,7 @@
       #emacsPgtkGcc
       emacsGit
       ripgrep
+      fzf # for tramp
       python3 # for treemacs
     ];
 

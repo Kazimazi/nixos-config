@@ -15,9 +15,6 @@
   ];
   config = {
     environment.systemPackages = with pkgs; [
-      ripgrep
-      fzf # emacs tramp couldn't use fzf, how about now?
-
       # information security & friends
       ncat
       nmap

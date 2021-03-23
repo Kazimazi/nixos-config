@@ -21,7 +21,7 @@
       inputs.master.follows = "master";
     };
 
-    emacs.url = "github:nix-community/emacs-overlay";
+    # emacs.url = "github:nix-community/emacs-overlay";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };

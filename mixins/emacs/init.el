@@ -884,6 +884,11 @@
 (use-package dap-java :ensure nil)
 
 ;;;
+;;;; Lisps
+(use-package geiser)
+
+
+;;;
 ;;;; W/E filetypes
 
 (use-package lua-mode)
@@ -893,8 +898,7 @@
 (use-package markdown-mode
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
+         ("\\.markdown\\'" . markdown-mode)))
 
 ;; idk how this block works
 ;; (use-package polymode)
