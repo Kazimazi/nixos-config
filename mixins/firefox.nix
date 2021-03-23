@@ -26,6 +26,7 @@
             i-dont-care-about-cookies
             h264ify
             tridactyl
+            keepassxc-browser
           ];
           profiles = {
             personal = {
