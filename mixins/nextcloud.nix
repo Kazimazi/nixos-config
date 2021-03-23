@@ -34,6 +34,7 @@
 
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-    environment.systemPackages = with pkgs; [nextcloud-client];
+    environment.systemPackages = with pkgs; [ ];
+    # TODO check syncthing options
   };
 }
