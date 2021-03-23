@@ -11,7 +11,7 @@
     ../mixins/gtk.nix
     ../mixins/pipewire.nix
     ../mixins/qt.nix
-    ../mixins/vscode.nix # fuck vscode >:(
+    #../mixins/vscode.nix # fuck vscode >:(
     ../mixins/wireshark.nix
   ];
   config = {
@@ -56,7 +56,7 @@
 
         gnome3.nautilus
 
-        nyxt
+        # nyxt
 
         anki
         texlive.combined.scheme-full # for latex
@@ -65,10 +65,10 @@
 
         discord
         element-desktop
-        skypeforlinux
-        zoom-us
+        # skypeforlinux
+        # zoom-us
 
-        filezilla
+        # filezilla
         qbittorrent
 
         libreoffice-fresh
