@@ -17,7 +17,7 @@ in {
               height = 30;
               modules-left = [ "sway/workspaces" "sway/mode" ];
               modules-center = [ "sway/window" ];
-              modules-right = [ "clock" "tray" ];
+              modules-right = [ "cpu" "clock" "tray" ];
               modules = {
                 "sway/workspaces" = {
                   disable-scroll = true;
@@ -36,12 +36,17 @@ in {
                   };
                 };
                 "tray" = {
-                  "icon-size" = 15;
-                  "spacing" = 10;
+                  icon-size = 15;
+                  spacing = 10;
                 };
                 "clock" = {
                   tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
                   format-alt = "{:%Y-%m-%d}";
+                };
+                "cpu" = {
+                  interval = 10;
+                  format = "cpu {}%";
+                  max-length = 10;
                 };
               };
             }
