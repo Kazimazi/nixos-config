@@ -9,8 +9,8 @@
     ../mixins/vifm/vifm.nix
     ../mixins/direnv.nix
     ../mixins/adb.nix
-    ../mixins/docker.nix
-    ../mixins/virt.nix
+    #../mixins/docker.nix
+    #../mixins/virt.nix
     ../mixins/nix-index.nix
   ];
   config = {
