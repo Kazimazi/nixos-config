@@ -11,7 +11,7 @@
     ../mixins/gtk.nix
     ../mixins/pipewire.nix
     ../mixins/qt.nix
-    #../mixins/vscode.nix # fuck vscode >:(
+    # ../mixins/vscode.nix # fuck vscode >:(
     ../mixins/wireshark.nix
   ];
   config = {
