@@ -85,9 +85,12 @@ in {
 
     hardware.cpu.intel.updateMicrocode = true;
 
-    hardware.nvidia.prime.offload.enable = true;
-    hardware.nvidia.prime.intelBusId = "PCI:0:2:0";
-    hardware.nvidia.prime.nvidiaBusId = "PCI:1:0:0";
+    hardware.nvidia.prime = {
+      # offload.enable = true;
+      sync.enable = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
 
     services.xserver.videoDrivers = [ "nvidia" ];
     services.xserver.libinput.enable = true;
