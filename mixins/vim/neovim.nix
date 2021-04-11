@@ -21,6 +21,7 @@
               # for telescope
               bat fd
               nodejs yarn
+              tree-sitter #?
             ];
             viAlias = true;
             vimAlias = true;
@@ -56,6 +57,7 @@
               # for telescope
               bat fd
               nodejs yarn
+              tree-sitter
             ];
             viAlias = true;
             vimAlias = true;

@@ -1,16 +1,12 @@
 vim.o.foldlevel = 99
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-require'nvim-treesitter.configs'.setup
-{
-   ensure_installed = 'all', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
+
+require'nvim-treesitter.configs'.setup {
+   ensure_installed = 'maintained',
    highlight = {
       enable = true,
-      disable = {'clojure',},  -- list of language that will be disabled
-      --custom_captures = {
-      --  -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-      --  ['foo.bar'] = 'Identifier',
-      --},
+      disable = {},
    },
    incremental_selection = {
       enable = true,
