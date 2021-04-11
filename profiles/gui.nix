@@ -11,7 +11,7 @@
     ../mixins/gtk.nix
     ../mixins/pipewire.nix
     ../mixins/qt.nix
-    #../mixins/vscode.nix # fuck vscode >:(
+    # ../mixins/vscode.nix # fuck vscode >:(
     ../mixins/wireshark.nix
   ];
   config = {
@@ -54,9 +54,9 @@
         okular
         evince
 
-        gnome3.nautilus
+        scenebuilder.scenebuilder
 
-        # nyxt
+        gnome3.nautilus
 
         anki
         texlive.combined.scheme-full # for latex

@@ -19,7 +19,11 @@
       programs = {
         firefox = {
           enable = true;
-          package = pkgs.firefox.override { extraNativeMessagingHosts = [ pkgs.tridactyl-native ]; };
+          package = pkgs.firefox.override {
+            extraNativeMessagingHosts = [
+              pkgs.tridactyl-native
+            ];
+          };
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             betterttv
             ublock-origin
@@ -27,6 +31,7 @@
             h264ify
             tridactyl
             keepassxc-browser
+            grammarly
           ];
           profiles = {
             personal = {

@@ -11,13 +11,20 @@ end
 -- Only required if you have packer in your `opt` pack
 vim.cmd [[packadd packer.nvim]]
 
+local use_new_stack = false
+local use_telescope = true
+local use_treesitter = true
+
 -- local use = require('packer').use -- not really needed but why is the linter complaining
 return require('packer').startup(function()
    -- Packer can manage itself as an optional plugin
    use { 'wbthomason/packer.nvim', opt = true }
 
    -- syntax highlighting
-   use 'sheerun/vim-polyglot'
+   use {
+      'sheerun/vim-polyglot',
+      disable = false
+   }
 
    use { 'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
@@ -71,10 +78,11 @@ return require('packer').startup(function()
    use { 'mhartington/formatter.nvim', disable = true }
 
    use { 'direnv/direnv.vim' }
-   use { 'junegunn/fzf' }
-   use { 'junegunn/fzf.vim', config = function() require('config.fzf') end }
+   use { 'junegunn/fzf', disable = use_telescope }
+   use { 'junegunn/fzf.vim', disable = use_telescope, config = function() require('config.fzf') end }
    use {
       'nvim-telescope/telescope.nvim',
+      disable = not use_telescope,
       requires = {
          { 'nvim-lua/popup.nvim' },
          { 'nvim-lua/plenary.nvim' }
@@ -102,7 +110,7 @@ return require('packer').startup(function()
    -- treesitter
    use {
       'nvim-treesitter/nvim-treesitter',
-      disable = true,
+      disable = not use_treesitter,
       run = ':TSUpdate',
       requires = {
          -- 'nvim-treesitter/nvim-treesitter-refactor',
@@ -117,17 +125,17 @@ return require('packer').startup(function()
    -- completion options
    use {
       'neoclide/coc.nvim',
-      disable = false,
+      disable = use_new_stack,
       config = function() require('config.coc') end
    }
    use {
       'hrsh7th/nvim-compe',
-      disable = true,
+      disable = not use_new_stack,
       config = function() require('config.nvim-compe') end
    }
    use {
       'neovim/nvim-lspconfig',
-      disable = true,
+      disable = not use_new_stack,
       config = function() require('config.nvim-lspconfig') end
    }
 end)

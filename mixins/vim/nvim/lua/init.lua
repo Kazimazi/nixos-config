@@ -26,7 +26,8 @@ vim.o.sidescroll = 1
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.wo.list = true
-vim.o.listchars = vim.o.listchars .. ',space:·'
+-- vim.o.listchars = vim.o.listchars .. ',space:·'
+vim.o.listchars = vim.o.listchars .. ',eol:↲'
 
 --Decrease update time
 vim.o.updatetime = 250

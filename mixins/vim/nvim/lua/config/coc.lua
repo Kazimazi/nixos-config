@@ -4,7 +4,7 @@ vim.o.cmdheight = 2
 vim.wo.signcolumn = 'yes'
 
 -- CocInstall these extensions
-vim.g.coc_global_extensions = {'coc-pairs', 'coc-html', 'coc-css', 'coc-tsserver', 'coc-eslint', 'coc-java', 'coc-snippets', 'coc-conjure', 'coc-sh'}
+vim.g.coc_global_extensions = {'coc-pairs', 'coc-html', 'coc-css', 'coc-tsserver', 'coc-eslint', 'coc-java', 'coc-snippets', 'coc-conjure', 'coc-sh', 'coc-xml'}
 
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
