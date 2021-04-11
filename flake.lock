@@ -231,7 +231,24 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur": "nur",
+        "scenebuilder": "scenebuilder",
         "stable": "stable"
+      }
+    },
+    "scenebuilder": {
+      "locked": {
+        "lastModified": 1612996475,
+        "narHash": "sha256-NVd9VRSn+yTmch8z3KH296oSCU9UaBYiZM4aQshyk1c=",
+        "owner": "wirew0rm",
+        "repo": "nixpkgs",
+        "rev": "5827e4b5186ac46182eb140008adb22b75f9cdfc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wirew0rm",
+        "ref": "pkg/scenebuilder",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "stable": {

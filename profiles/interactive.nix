@@ -31,6 +31,8 @@
     # yuck
     programs.java = {
       enable = true;
+      # removed javafx, so that jdt-ls won't get confused? idk I get confused
+      # package = (pkgs.jdk.override { enableJavaFX = false; });
     };
 
 
@@ -58,6 +60,7 @@
 
         # alkfejlesztes stack
         maven
+        sqlite
 
         youtube-dl
         ffmpeg

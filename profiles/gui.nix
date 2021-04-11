@@ -54,9 +54,9 @@
         okular
         evince
 
-        gnome3.nautilus
+        scenebuilder.scenebuilder
 
-        # nyxt
+        gnome3.nautilus
 
         anki
         texlive.combined.scheme-full # for latex

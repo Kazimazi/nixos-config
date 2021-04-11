@@ -6,6 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
     stable.url = "github:nixos/nixpkgs/nixos-20.09";
+    scenebuilder.url = "github:wirew0rm/nixpkgs/pkg/scenebuilder";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -41,6 +42,10 @@
       my-nixpkgs = import inputs.my-nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
+      };
+      scenebuilder = import inputs.scenebuilder {
+        inherit system;
+        #config = { allowUnfree = true; };
       };
     };
   in {
